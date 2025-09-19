@@ -1,0 +1,380 @@
+body {
+  font: 400;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0;
+  padding: 0;
+}
+
+.logo{
+  border-radius: 45%;
+  
+}
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background:linear-gradient(90deg,white,rgb(240, 219, 181),rgb(110, 104, 104));
+  margin-top: 5px;
+  border-radius: 25px;
+  width: 80%;
+}
+.subHeader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  padding: 5px;
+  margin: 0 auto;
+  gap: 10px; /* space between children */
+}
+
+@media screen and (max-width: 640px) {
+  .subHeader {
+    flex-direction: column;  /* stack vertically */
+    justify-content: center;
+    align-items: stretch;    /* stretch children to full width */
+    width: 100%;             /* occupy full width on small screens */
+    padding: 10px;
+    gap: 15px;               /* more spacing between items */
+    border-radius: 9px;
+  }
+
+  .subHeader > * {
+    width: 100%;             /* each child fills the container */
+    text-align: center;      /* center text inside */
+  }
+}
+
+
+.Header h4 {
+  margin: 0 16px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  color:black;
+  transition: color 0.3s ease-in-out;
+}
+.Header h4::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background: linear-gradient(90deg, #0680cd, #e22b06);
+  border-radius: 2px;
+  transition: width 0.3s ease-in-out;
+}
+.Header h4:hover {
+  color: #0612ec;
+}
+
+.Header h4:hover::after {
+  width: 100%;
+}
+
+.Content {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(233, 229, 224, 0);
+  overflow: auto;
+}
+
+
+.Footer {
+  background-color: rgba(99, 58, 9, 0.343);
+  padding: 0.2rem;
+}
+button {
+  border-radius: 1rem;
+  font-family: "Times New Roman", Times, serif;
+  padding: 12px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  color:black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+button:hover {
+  background: linear-gradient(135deg, #f76b1c, #2515db);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Save Button */
+.savebtn {
+  background: white;
+  color: black;
+}
+
+.savebtn:hover {
+  background:linear-gradient(135deg, #1cf720, #036207,#a2ec0e);; 
+  transform: scale(1.05);
+  color: wheat;
+}
+
+/* Delete Button */
+.dltbtn {
+  background: white;
+  color: black;
+}
+
+.dltbtn:hover {
+  background: linear-gradient(135deg, #ed0505, #c33d0d,#9b3f07);; 
+  transform: scale(1.05);
+   color: wheat;
+}
+
+
+.dropdown {
+  position: relative;
+  
+}
+.dropdown-menu {
+  position: absolute;
+  z-index: 999;
+  display: none;
+  margin-top: 0.5rem;
+  top: 60%;
+  left: 0;
+  min-width: 150px;
+  color: black;
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu p {
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+.dropdown-menu p:hover {
+  background-color: #0056b3;
+  border-radius: 10px;
+  color: white;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.Content,
+.OldNotes {
+  padding: 10px 20px;
+}
+.note-card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  overflow: hidden;
+}
+.Content-container,
+.OldNotes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+@media screen and (max-width: 640px) {
+  .Content-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  .OldNotes-container {
+    flex-direction: column;
+  }
+}
+
+.note-card {
+  border: 1px solid red;
+  padding: 12px;
+  border-radius: 8px;
+  width: 30%; /* ensures 3 fit per row */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+  backdrop-filter: blur(1px);
+  width: 250px;
+  color: white;
+}
+.note-card-2 {
+  border: 1.5px solid rgb(192, 3, 226);
+  padding: 12px;
+  border-radius: 8px;
+  width: 30%;
+  box-shadow: 4px 4px 8px rgba(6, 6, 6, 0.541);
+  word-wrap: break-word;
+  backdrop-filter: blur(2px);
+  margin: 0.5rem;
+  color: white;
+  
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+  font-family: sans-serif;
+}
+
+.auth-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.auth-form {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+  background-color: #0056b3;
+}
+.left-btn {
+  
+  left: 40px;
+  padding: 10px;
+}
+.profilefont {
+  font-family: sans-serif;
+  font-weight: bolder;
+font-size: 20px;
+}
+.profile-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.profil-body-2 {
+  backdrop-filter: blur(5px) ;
+  padding: 30px 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profil-body-2:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.profile-body form {
+  display: flex;
+  flex-direction: column; /* Stack inputs one by one */
+   align-items: center; 
+  gap: 30px;
+}
+.input-wrapper input {
+  width: 300px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 20px 10px 8px 10px;
+  background: linear-gradient(90deg, #0681cdad, #d0670b8e);
+  color: white;
+}
+.input-wrapper input:focus {
+  border-color: #a9b0b8;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+.input-wrapper {
+  position: relative;
+  width: 300px;
+}
+.floating-label {
+  position: absolute;
+  top: 6px; /* stick label at top inside box */
+  left: 12px;
+  font-size: 14px;
+  color: black;
+  pointer-events: none; /* let clicks go to input */
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background: linear-gradient(90deg, #0680cd, #d0670b);
+  border-radius: 25px;
+  align-items: center;
+  z-index: 999;
+
+  position: sticky; /* makes it "float" */
+  top: 0; /* stick to top inside parent */
+}
+
+.toolbar button,
+.toolbar select,
+.toolbar input[type="color"] {
+  padding: 5px 8px;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  background: white;
+  border-radius: 4px;
+}
+
+.toolbar button:hover,
+.toolbar select:hover {
+  background: linear-gradient(90deg, #d0670b, #0680cd);
+}
+
+.editor {
+  min-height: 200px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: white;
+}
+
