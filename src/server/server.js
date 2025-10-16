@@ -11,6 +11,7 @@ import { body, validationResult } from "express-validator";
 import User from "../models/user.js";
 import Note from "../models/notes.js";
 import dotenv from "dotenv";
+import fetch from "node-fetch";
 
 dotenv.config();
 
@@ -25,7 +26,8 @@ app.use(cookieParser());
 // ===== CORS =====
 app.use(
   cors({
-    origin: "https://kimplebackend-front.onrender.com",
+    origin: 
+    "https://kimplebackend-front.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -44,6 +46,7 @@ try {
 
 // ===== JWT Secret =====
 const JWT_SECRET = process.env.JWT_SECRET;
+
 
 // ===== Rate Limiters =====
 const notesLimiter = rateLimit({
@@ -131,7 +134,17 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
 
   try {
-    const { email, password } = req.body;
+    const { email, password,captchaToken } = req.body;
+     // Verify reCAPTCHA
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY || "YOUR_SECRET_KEY";
+  const response = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
+    { method: "POST" }
+  );
+  const data = await response.json();
+
+  if (!data.success) return res.status(400).json({ message: "CAPTCHA failed" });
+
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
 

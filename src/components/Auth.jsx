@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 import img002 from "../assets/img002.jpg";
@@ -11,10 +12,13 @@ function Auth() {
   const [fullName, setFullName] = useState("");
   const [error, setError] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const [captchaToken, setCaptchaToken] = useState(null);
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
-
-  const handleAuth = async () => {
+  const API_SECRET = import.meta.env.SECRET_WAY;
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    if (!captchaToken) return alert("Please verify CAPTCHA");
     try {
       setError("");
 
@@ -22,7 +26,7 @@ function Auth() {
 
       const body = isLogin
         ? JSON.stringify({ email, password })
-        : JSON.stringify({ fullName, email, password });
+        : JSON.stringify({ fullName, email, password, captchaToken });
 
       const headers = { "Content-Type": "application/json" };
 
@@ -58,7 +62,11 @@ function Auth() {
   return (
     <div
       className="auth-container"
-      style={{ backgroundImage: `url(${img002})`, backgroundSize: "contain",minHeight:'100vh' }}
+      style={{
+        backgroundImage: `url(${img002})`,
+        backgroundSize: "contain",
+        minHeight: "100vh",
+      }}
     >
       <div className="auth-form">
         <div
@@ -72,7 +80,7 @@ function Auth() {
             className="logo"
             src={kimple}
             alt="My App Logo"
-            style={{ height: "100px",width:"100px" }}
+            style={{ height: "100px", width: "100px" }}
           />
         </div>
         <h1>{isLogin ? "Login" : "Create new Account"}</h1>
@@ -86,21 +94,23 @@ function Auth() {
           />
         )}
 
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter Email"
-        />
+        <form onSubmit={handleAuth}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter Email"
+          />
 
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter Password"
-        />
-
-        <button onClick={handleAuth}>{isLogin ? "Login" : "Sign Up"}</button>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter Password"
+          />
+          <ReCAPTCHA sitekey={API_SECRET} onChange={setCaptchaToken} />
+          <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
+        </form>
 
         {error && <p style={{ color: "red", marginTop: "0.5rem" }}>{error}</p>}
 
