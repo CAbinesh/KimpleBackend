@@ -15,7 +15,7 @@ function Auth() {
   const [captchaToken, setCaptchaToken] = useState(null);
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
-  const API_SECRET = import.meta.env.SECRET_WAY;
+  const SITE_KEY = import.meta.env.VITE_SITE_KEY;
   const handleAuth = async (e) => {
     e.preventDefault();
     if (!captchaToken) return alert("Please verify CAPTCHA");
@@ -108,7 +108,20 @@ function Auth() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter Password"
           />
-          <ReCAPTCHA sitekey={API_SECRET} onChange={setCaptchaToken} />
+          <div
+  style={{
+    transform: window.innerWidth < 640 ? "scale(1)" : "scale(1)",
+    transformOrigin: "0 0",
+    marginTop: "1rem"
+  }}
+>
+  <ReCAPTCHA
+    sitekey={SITE_KEY}
+    onChange={setCaptchaToken}
+    size={window.innerWidth < 480 ? "compact" : "normal"}
+  />
+</div>
+
           <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </form>
 

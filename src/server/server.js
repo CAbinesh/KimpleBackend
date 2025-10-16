@@ -136,7 +136,7 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
   try {
     const { email, password,captchaToken } = req.body;
      // Verify reCAPTCHA
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY || "YOUR_SECRET_KEY";
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY ;
   const response = await fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
     { method: "POST" }
