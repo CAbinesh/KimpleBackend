@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import img2 from "../assets/img2.jpg";
+import img001 from "../assets/img001.jpg";
 import JoditEditor from "jodit-react";
 import kimple from '../assets/kimple.png'
 
@@ -78,8 +78,8 @@ const API_URL = import.meta.env.VITE_API_URL;
   return (
     <div
       style={{
-        backgroundImage: `url(${img2})`,
-        backgroundSize: "cover",
+        backgroundImage: `url(${img001})`,
+        backgroundSize:'cover',
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
@@ -90,12 +90,11 @@ const API_URL = import.meta.env.VITE_API_URL;
       </div>
 
       <div
-        className="Header"
+        className="Header2"
         style={{
           maxWidth: "500px",
           margin: "1rem auto",
           justifyContent:'space-between',
-          
           display: "flex",
         }}
       >

@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import img3 from "../assets/img3.jpg";
+import img003 from "../assets/img003.jpg";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
-import kimple from "../assets/kimple.png";
+import kimple from "../assets/kimplevid.webm";
 function MainPage() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
-
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dropdown, setDropDown] = useState(false);
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchNotes = async () => {
       try {
@@ -31,7 +31,7 @@ const API_URL = import.meta.env.VITE_API_URL;
       }
     };
     fetchNotes();
-  }, [navigate,API_URL]);
+  }, [navigate, API_URL]);
 
   const latest = notes.slice(0, 3);
 
@@ -57,7 +57,6 @@ const API_URL = import.meta.env.VITE_API_URL;
     });
     setUser(null);
     navigate("/auth");
-    alert("Logged out");
   };
 
   if (loading)
@@ -68,8 +67,9 @@ const API_URL = import.meta.env.VITE_API_URL;
   return (
     <div
       style={{
-        backgroundImage: `url(${img3})`,
+        backgroundImage: `url(${img003})`,
         backgroundSize: "cover",
+        backgroundRepeat: "repeat-y",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
@@ -83,18 +83,14 @@ const API_URL = import.meta.env.VITE_API_URL;
           color: "white",
         }}
       >
-        {/* <div className="Title ">
-          <h1>Notes..🪶</h1>
-        </div> */}
-
         <div className="Header">
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              className="logo"
-              src={kimple}
-              alt="My App Logo"
-              style={{ height: "80px", marginLeft: "10px" }}
-            />
+            <div>
+              <video autoPlay playsInline disablePictureInPicture loop muted>
+                <source src={kimple} />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
           <div className="subHeader">
             <h4
@@ -120,19 +116,44 @@ const API_URL = import.meta.env.VITE_API_URL;
                 Profile
               </h4>
               {dropdown && (
-                <div
-                  className="dropdown-menu"
-                  
-                >
+                <div className="dropdown-menu">
                   <p
                     onClick={() => navigate("/profile")}
                     style={{ cursor: "pointer" }}
                   >
                     View Profile
                   </p>
-                  <p style={{ cursor: "pointer" }} onClick={handleLogout}>
+                  <p
+                    onClick={() => setShowLogoutConfirm(true)}
+                    style={{ cursor: "pointer" }}
+                  >
                     Logout
                   </p>
+                  {showLogoutConfirm && (
+          <div className="modalBackdrop">
+            <div className="modalBox">
+              <h3 style={{color:'red'}}>Confirm Logout</h3>
+              <h5 style={{color:'black'}}>Are you sure you want to logout?</h5>
+              <div className="modalButtons">
+                <button
+                  className="btn"
+                  onClick={() => {
+                    handleLogout(); // ✅ logout only when confirmed
+                    setShowLogoutConfirm(false);
+                  }}
+                >
+                  Yes
+                </button>
+                <button
+                  className="btn"
+                  onClick={() => setShowLogoutConfirm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
                 </div>
               )}
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./components/MainPage";
@@ -36,9 +37,36 @@ function App() {
       }
     };
     fetchUser();
-  }, []);
+  }, [API_URL]);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading)
+    return (
+      <div
+        style={{
+          backgroundColor: "black",
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <div className="loader-wrapper">
+          <span className="loader-letter">S</span>
+          <span className="loader-letter">e</span>
+          <span className="loader-letter">t</span>
+          <span className="loader-letter">t</span>
+          <span className="loader-letter">i</span>
+          <span className="loader-letter">n</span>
+          <span className="loader-letter">g</span>
+          <span className="loader-letter"> </span>
+          <span className="loader-letter">u</span>
+          <span className="loader-letter">p</span>
+          <span className="loader-letter">.</span>
+          <span className="loader-letter">.</span>
+          <span className="loader-letter">.</span>
+
+          <div className="loader"></div>
+        </div>
+      </div>
+    );
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

@@ -7,13 +7,12 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import path from "path";
 import { body, validationResult } from "express-validator";
 import User from "../models/user.js";
 import Note from "../models/notes.js";
 import dotenv from "dotenv";
 
-dotenv.config({ path: path.resolve("../../.env") });
+dotenv.config();
 
 const app = express();
 
@@ -22,24 +21,21 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
-// ===== Serve uploads (optional) =====
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // ===== CORS =====
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const corsOptions = {
+  origin: 
+    "https://kimplebackend-front.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+
 
 // ===== MongoDB =====
 try {
   await mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   });
   console.log("MongoDB Connected ✅");
 } catch (err) {

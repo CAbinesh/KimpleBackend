@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import img4 from "../assets/img4.jpg";
+import img002 from "../assets/img003.jpg";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 import kimple from "../assets/kimple.png";
@@ -10,7 +10,7 @@ function OldNotes() {
   const [dropdown, setDropDown] = useState(false);
   const [notes, setNotes] = useState([]);
   const { setUser } = useContext(AuthContext);
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchNotes = async () => {
       try {
@@ -29,7 +29,7 @@ const API_URL = import.meta.env.VITE_API_URL;
       }
     };
     fetchNotes();
-  }, [navigate,API_URL]);
+  }, [navigate, API_URL]);
 
   const handleDelete = async (id) => {
     try {
@@ -60,8 +60,9 @@ const API_URL = import.meta.env.VITE_API_URL;
   return (
     <div
       style={{
-        backgroundImage: `url(${img4})`,
+        backgroundImage: `url(${img002})`,
         backgroundSize: "cover",
+        backgroundRepeat: "repeat-x",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
@@ -120,37 +121,38 @@ const API_URL = import.meta.env.VITE_API_URL;
       </div>
 
       <div
-  className="Header"
-  style={{
-    maxWidth: "500px",
-    margin: "1rem auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center", // center children
-    background: "white",
-    padding: "16px 16px",
-    borderRadius: "12px",
-    position: "relative", // allows absolute positioning for button
-  }}
->
-  <button
-    onClick={() => navigate("/")}
-    style={{
-      position: "absolute",
-      left: "16px", // stick to left edge
-      border: "none",
-      fontSize: "20px",
-      cursor: "pointer",
-      padding: "4px 8px",
-      borderRadius: "6px",
-    }}
-  >
-    ←
-  </button>
+        className="smallHeader"
+        style={{
+          maxWidth: "500px",
+          margin: "1rem auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center", // center children
+          background: "white",
+          padding: "16px 16px",
+          borderRadius: "12px",
+          position: "relative", // allows absolute positioning for button
+        }}
+      >
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            position: "absolute",
+            left: "16px", // stick to left edge
+            border: "none",
+            fontSize: "20px",
+            cursor: "pointer",
+            padding: "4px 8px",
+            borderRadius: "6px",
+          }}
+        >
+          ←
+        </button>
 
-  <h2 className="profilefont" style={{ margin: 0 }}>OldNotes</h2>
-</div>
-
+        <h2 className="profilefont" style={{ margin: 0 }}>
+          OldNotes
+        </h2>
+      </div>
 
       <div className="content">
         <h3
