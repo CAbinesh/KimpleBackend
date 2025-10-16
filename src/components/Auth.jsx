@@ -18,15 +18,15 @@ function Auth() {
   const SITE_KEY = import.meta.env.VITE_SITE_KEY;
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (!captchaToken) return alert("Please verify CAPTCHA");
+    if (isLogin &&!captchaToken) return alert("Please verify CAPTCHA");
     try {
       setError("");
 
       const url = isLogin ? `${API_URL}/api/login` : `${API_URL}/api/signup`;
 
       const body = isLogin
-        ? JSON.stringify({ email, password })
-        : JSON.stringify({ fullName, email, password, captchaToken });
+        ? JSON.stringify({ email, password, captchaToken })
+        : JSON.stringify({ fullName, email, password });
 
       const headers = { "Content-Type": "application/json" };
 
@@ -108,19 +108,19 @@ function Auth() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter Password"
           />
-          <div
-  style={{
-    transform: window.innerWidth < 640 ? "scale(1)" : "scale(1)",
-    transformOrigin: "0 0",
-    marginTop: "1rem"
-  }}
->
-  <ReCAPTCHA
-    sitekey={SITE_KEY}
-    onChange={setCaptchaToken}
-    size={window.innerWidth < 480 ? "compact" : "normal"}
-  />
-</div>
+          {isLogin && (<div
+            style={{
+              transform: window.innerWidth < 640 ? "scale(1)" : "scale(1)",
+              transformOrigin: "0 0",
+              marginTop: "1rem",
+            }}
+          >
+            <ReCAPTCHA
+              sitekey={SITE_KEY}
+              onChange={setCaptchaToken}
+              size={window.innerWidth < 480 ? "compact" : "normal"}
+            />
+          </div>)}
 
           <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </form>
