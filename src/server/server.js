@@ -22,12 +22,11 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
-
 // ===== CORS =====
 app.use(
   cors({
-    origin: 
-    "https://kimplebackend-front.onrender.com",
+    origin:
+      "https://kimplebackend-front.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -36,8 +35,7 @@ app.use(
 
 // ===== MongoDB =====
 try {
-  await mongoose.connect(process.env.MONGO_URI, {
-  });
+  await mongoose.connect(process.env.MONGO_URI, {});
   console.log("MongoDB Connected ✅");
 } catch (err) {
   console.error("MongoDB Connection Error ❌:", err.message);
@@ -46,7 +44,6 @@ try {
 
 // ===== JWT Secret =====
 const JWT_SECRET = process.env.JWT_SECRET;
-
 
 // ===== Rate Limiters =====
 const notesLimiter = rateLimit({
@@ -134,16 +131,17 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
 
   try {
-    const { email, password,captchaToken } = req.body;
-     // Verify reCAPTCHA
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY ;
-  const response = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
-    { method: "POST" }
-  );
-  const data = await response.json();
+    const { email, password, captchaToken } = req.body;
+    // Verify reCAPTCHA
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
+      { method: "POST" }
+    );
+    const data = await response.json();
 
-  if (!data.success) return res.status(400).json({ message: "CAPTCHA failed" });
+    if (!data.success)
+      return res.status(400).json({ message: "CAPTCHA failed" });
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
@@ -152,12 +150,12 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" });
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 3600000,
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     res.json({

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import img001 from "../assets/img001.jpg";
+import img001 from "../assets/img001.png";
 import JoditEditor from "jodit-react";
 import kimple from '../assets/kimple.png'
 
@@ -83,6 +83,7 @@ const API_URL = import.meta.env.VITE_API_URL;
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
+        backgroundAttachment:"fixed"
       }}
     >
       <div className="Title">
@@ -102,7 +103,7 @@ const API_URL = import.meta.env.VITE_API_URL;
                 <img className="logo"
                   src={kimple} 
                   alt="My App Logo" 
-                  style={{ height: "80px", marginLeft: "10px", }}
+                  style={{ height: "100px", marginLeft: "10px", }}
                 /></div>
         <h2 className="profilefont"style={{marginRight:'200px'}}>{noteToEdit ? "Edit Note" : "New Note"}</h2>
       </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import img002 from "../assets/img003.jpg";
+import img002 from "../assets/img004.png";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 import kimple from "../assets/kimple.png";
@@ -62,9 +62,9 @@ function OldNotes() {
       style={{
         backgroundImage: `url(${img002})`,
         backgroundSize: "cover",
-        backgroundRepeat: "repeat-x",
         backgroundPosition: "center",
         minHeight: "100vh",
+        backgroundAttachment: "fixed",
         padding: "1rem",
       }}
     >
@@ -74,7 +74,7 @@ function OldNotes() {
             className="logo"
             src={kimple}
             alt="My App Logo"
-            style={{ height: "80px", marginLeft: "10px" }}
+            style={{ height: "100px", marginLeft: "10px" }}
           />
         </div>
         <div className="subHeader">

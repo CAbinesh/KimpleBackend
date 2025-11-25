@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import img003 from "../assets/img003.jpg";
+import img003 from "../assets/img003.png";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
-import kimple from "../assets/kimplevid.webm";
+import kimple from "../assets/kimple.png";
 function MainPage() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
@@ -65,12 +65,11 @@ function MainPage() {
     );
 
   return (
-    <div
+    <div className="profilewallpaper"
       style={{
         backgroundImage: `url(${img003})`,
+        backgroundAttachment:"fixed",
         backgroundSize: "cover",
-        backgroundRepeat: "repeat-y",
-        backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
       }}
@@ -86,10 +85,7 @@ function MainPage() {
         <div className="Header">
           <div style={{ display: "flex", alignItems: "center" }}>
             <div>
-              <video autoPlay playsInline disablePictureInPicture loop muted>
-                <source src={kimple} />
-                Your browser does not support the video tag.
-              </video>
+             <img className="headerLogo" src={kimple} alt="" />
             </div>
           </div>
           <div className="subHeader">

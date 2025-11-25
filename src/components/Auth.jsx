@@ -80,7 +80,7 @@ function Auth() {
             className="logo"
             src={kimple}
             alt="My App Logo"
-            style={{ height: "100px", width: "100px" }}
+            style={{ height: "150px", width: "150px",marginBottom:"0px" }}
           />
         </div>
         <h1>{isLogin ? "Login" : "Create new Account"}</h1>

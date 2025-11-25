@@ -8,7 +8,12 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.profilebg{
+  background-image: url(assets/img005.png);
+  background-position: centre;
+  background-size: cover;
+  min-height: 100vh;
+}
 
 .Header {
   display: flex;
@@ -16,15 +21,19 @@ body {
   align-items: center;
   margin: 0 auto;
   background: linear-gradient(
-    140deg,
-    rgb(148, 188, 245),
+    90deg,
     rgb(140, 243, 186),
-    rgb(148, 188, 245),
-    rgb(140, 243, 186)
+    rgb(192, 197, 203),
+    rgb(148, 188, 245)
   );
   margin-top: 5px;
   border-radius: 25px;
   width: 80%;
+}
+.headerLogo{
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
 }
 .Header .profilefont{
   font-family: "Quicksand", sans-serif;
@@ -41,18 +50,14 @@ body {
   background: linear-gradient(
     90deg,
     rgb(140, 243, 186),
-    rgb(148, 188, 245),
-    rgb(140, 243, 186),
+    rgb(192, 197, 203),
     rgb(148, 188, 245)
   );
   margin-top: 5px;
   border-radius: 25px;
   width: 80%;
 }
-.Header video{
-  width: 200px;
-  height: 100px;
-}
+
 .smallHeader {
   max-width: "500px";
   margin: "1rem auto";
@@ -300,9 +305,9 @@ button:hover {
   width: 30%;
   box-shadow: 4px 4px 8px rgba(241, 245, 3, 0.541);
   word-wrap: break-word;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
   margin: 0.5rem;
-  color: white;
+  color: rgb(11, 11, 11);
 
   @media screen and (max-width: 600px) {
     width: 90%;
@@ -327,7 +332,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(to right, #f3f4f6, #e5e7eb);
   font-family: sans-serif;
 }
@@ -342,8 +347,15 @@ button:hover {
   padding: 2rem 3rem;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: auto;
+  margin-top: 20px;
+ min-height: 100vh;
   width: 300px;
+}
+@media screen and (max-width: 768px)   {
+  .auth-form{
+    min-width: 80%;
+    height: 100vh;
+  }
 }
 
 .auth-form input {
