@@ -335,7 +335,7 @@ button:hover {
       #61a6ab 0 calc(25% / 2)
     ),
     /* 🔽 brightness reducer layer */
-    rgba(0,0,0,0.25);
+    rgba(0,0,0,0.4);
 
   background-size: var(--s) calc(3 * var(--s) / 2);
   background-blend-mode: normal,normal,normal,normal,normal,multiply;
