@@ -318,7 +318,8 @@ button:hover {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-   --s: 140px;
+
+  --s: 140px;
   --c1: #ab3e5b;
   --c2: #ffbe40;
 
@@ -336,7 +337,9 @@ button:hover {
       90deg,
       #accec0 calc(25% / -6) calc(25% / 6),
       #61a6ab 0 calc(25% / 2)
-    )
+    );
+
+  background-size: var(--s) calc(3 * var(--s) / 2);
 }
 
 /* black backdrop overlay */
@@ -344,15 +347,17 @@ button:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* adjust darkness here */
+  background: rgba(0, 0, 0, 0.35); /* adjust darkness */
   z-index: 1;
+  pointer-events: none; /* ✅ important */
 }
 
-/* bring all content above the backdrop */
+/* content above backdrop */
 .oldcontbg > * {
   position: relative;
   z-index: 2;
 }
+
 
 
 
