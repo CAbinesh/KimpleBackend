@@ -316,7 +316,8 @@ button:hover {
   }
 }
 .OldNotes-container{
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 .dropdown-menu {
   position: absolute;
