@@ -301,7 +301,7 @@ button:hover {
   border: 1.5px solid rgb(247, 243, 5);
   padding: 12px;
   border-radius: 8px;
-  width: 100%;
+  width: 95%;
   box-shadow: 4px 4px 8px rgba(241, 245, 3, 0.541);
   word-wrap: break-word;
   backdrop-filter: blur(5px);
@@ -317,6 +317,7 @@ button:hover {
 .OldNotes-container{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 .dropdown-menu {
   position: absolute;
