@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import img002 from "../assets/img004.png";
+
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 import kimple from "../assets/kimple.png";
@@ -59,14 +59,7 @@ function OldNotes() {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${img002})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        backgroundAttachment: "fixed",
-        padding: "1rem",
-      }}
+      className="oldcontbg"
     >
       <div className="Header">
         <div style={{ display: "flex", alignItems: "center" }}>
