@@ -35,7 +35,7 @@ function Profile() {
   // };
 
   return (
-    <div className="profilebg">
+    <div className="oldcontbg">
       <div className="Header">
         <div style={{ display: "flex", alignItems: "center" }}>
           <img

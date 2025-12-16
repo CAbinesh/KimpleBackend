@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import img001 from "../assets/img001.png";
 import JoditEditor from "jodit-react";
 import kimple from '../assets/kimple.png'
 
@@ -77,14 +76,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${img001})`,
-        backgroundSize:'cover',
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "1rem",
-        backgroundAttachment:"fixed"
-      }}
+     className="oldcontbg"
     >
       <div className="Title">
         

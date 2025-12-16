@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import img003 from "../assets/img003.png";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 import kimple from "../assets/kimple.png";
@@ -65,14 +64,7 @@ function MainPage() {
     );
 
   return (
-    <div className="profilewallpaper"
-      style={{
-        backgroundImage: `url(${img003})`,
-        backgroundAttachment:"fixed",
-        backgroundSize: "cover",
-        minHeight: "100vh",
-        padding: "1rem",
-      }}
+    <div className="oldcontbg"
     >
       <div
         style={{

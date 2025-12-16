@@ -8,12 +8,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.profilebg{
-  background-image: url(assets/img005.png);
-  background-position: centre;
-  background-size: cover;
-  min-height: 100vh;
-}
+
 
 .Header {
   display: flex;
