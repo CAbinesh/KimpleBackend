@@ -301,12 +301,12 @@ button:hover {
   border: 1.5px solid rgb(247, 243, 5);
   padding: 12px;
   border-radius: 8px;
-  width: 95%;
+  width: 94%;
   box-shadow: 4px 4px 8px rgba(241, 245, 3, 0.541);
   word-wrap: break-word;
   backdrop-filter: blur(5px);
   margin: 0.5rem;
-  color: rgb(11, 11, 11);
+  color: rgb(255, 255, 255);
 
   @media screen and (max-width: 600px) {
     width: 90%;
@@ -320,29 +320,15 @@ button:hover {
   gap: 10px;
 }
 .oldcontbg{
-  --s: 100px; /* control the size */
-  --c1: #ff8afc;
-  --c2: #1b1b3a;
+   --s: 25px; /* control the size */
+  --c1: #1eaaee;
+  --c2: #171717;
 
-  --_g: var(--c2) 6% 14%, var(--c1) 16% 24%, var(--c2) 26% 34%,
-    var(--c1) 36% 44%, var(--c2) 46% 54%, var(--c1) 56% 64%, var(--c2) 66% 74%,
-    var(--c1) 76% 84%, var(--c2) 86% 94%;
-  background: radial-gradient(
-      100% 100% at 100% 0,
-      var(--c1) 4%,
-      var(--_g),
-      #0008 96%,
-      #0000
-    ),
-    radial-gradient(
-        100% 100% at 0 100%,
-        #0000,
-        #0008 4%,
-        var(--_g),
-        var(--c1) 96%
-      )
-      var(--c1);
-  background-size: var(--s) var(--s);
+  --c: #0000 71%, var(--c1) 0 79%, #0000 0;
+  --_s: calc(var(--s) / 2) / calc(2 * var(--s)) calc(2 * var(--s));
+  background: linear-gradient(45deg, var(--c)) calc(var(--s) / -2) var(--_s),
+    linear-gradient(135deg, var(--c)) calc(var(--s) / 2) var(--_s),
+    radial-gradient(var(--c1) 35%, var(--c2) 37%) 0 0 / var(--s) var(--s);
 }
 .dropdown-menu {
   position: absolute;
