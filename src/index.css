@@ -347,7 +347,7 @@ button:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* adjust darkness */
+  background: rgba(0, 0, 0, 0.50); /* adjust darkness */
   z-index: 1;
   pointer-events: none; /* ✅ important */
 }
@@ -678,8 +678,8 @@ button:hover {
     transform: translateY(0);
   }
 }
-/* till this loader */
-.modalBackdrop {
+
+/* .modalBackdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -689,8 +689,9 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* ensures modal is above all content */
-}
+  z-index: 1000; 
+} 
+ */
 
 .modalBox {
   background: white;
