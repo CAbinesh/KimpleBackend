@@ -35,7 +35,7 @@ function Profile() {
   // };
 
   return (
-    <div className="oldcontbg">
+    <div className="oldcontbg" style={{minHeight:"100vh"}}>
       <div className="Header">
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
