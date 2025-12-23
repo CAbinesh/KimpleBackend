@@ -257,7 +257,7 @@ button:hover {
 }
 @media screen and(max-width:640px) {
   .Content {
-    width: auto;
+    width: 100%;
   }
 
   .OldNotes-container {
