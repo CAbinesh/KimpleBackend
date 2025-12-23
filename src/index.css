@@ -314,6 +314,12 @@ button:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
+@media screen and (max-width:628px) {
+  .OldNotes-container{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 .oldcontbg {
   position: relative;
   min-height: 100vh;
