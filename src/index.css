@@ -257,7 +257,7 @@ button:hover {
 }
 @media screen and(max-width:640px) {
   .Content {
-    width: 150px;
+    width: auto;
   }
 
   .OldNotes-container {
@@ -270,7 +270,6 @@ button:hover {
 @media screen and (max-width: 640px) {
   .Content-container {
     flex-direction: column;
-
     gap: 10px;
   }
  
@@ -289,6 +288,7 @@ button:hover {
 }
 @media screen and (max-width: 640px) {
   .note-card {
+
     width: 90%;
     font-size: 0.95rem;
     padding: 10px;
