@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
+import { IoLibrary } from "react-icons/io5";
 import kimple from "../assets/kimple.png";
 function MainPage() {
   const navigate = useNavigate();
@@ -150,7 +151,7 @@ function MainPage() {
         </div>
 
         <div className="Content" style={{ marginTop: "2rem" }}>
-          <h3>📝 Last 3 Notes:</h3>
+          <h3><IoLibrary size={20} color="white"/> Last 3 Notes:</h3>
           <div
             className="Content-container"
             style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}

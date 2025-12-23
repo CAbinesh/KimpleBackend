@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { IoLibrary } from "react-icons/io5";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 import kimple from "../assets/kimple.png";
@@ -156,11 +156,11 @@ function OldNotes() {
             fontSize: "24px",
           }}
         >
-          📜 All Notes:
+          <IoLibrary size={20} color="white"/> All Notes:
         </h3>
         <div className="OldNotes-container">
           {notes.length === 0 ? (
-            <h2 style={{ color: "red" }}>No Data found.</h2>
+            <h2 style={{ color: "white" }}>No Data found.</h2>
           ) : (
             notes.map((note) => (
               <div key={note.id} className="note-card-2">

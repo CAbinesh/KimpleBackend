@@ -234,8 +234,7 @@ button:hover {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-.Content,
-.OldNotes {
+.Content {
   padding: 10px;
 }
 .note-card p {
