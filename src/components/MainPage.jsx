@@ -64,8 +64,7 @@ function MainPage() {
     );
 
   return (
-    <div className="oldcontbg"
-    >
+    <div className="oldcontbg">
       <div
         style={{
           backgroundColor: "rgba(0,0,0,0.65)",
@@ -77,7 +76,7 @@ function MainPage() {
         <div className="Header">
           <div style={{ display: "flex", alignItems: "center" }}>
             <div>
-             <img className="headerLogo" src={kimple} alt="" />
+              <img className="headerLogo" src={kimple} alt="" />
             </div>
           </div>
           <div className="subHeader">
@@ -118,30 +117,32 @@ function MainPage() {
                     Logout
                   </p>
                   {showLogoutConfirm && (
-          <div className="modalBackdrop">
-            <div className="modalBox">
-              <h3 style={{color:'red'}}>Confirm Logout</h3>
-              <h5 style={{color:'black'}}>Are you sure you want to logout?</h5>
-              <div className="modalButtons">
-                <button
-                  className="btn"
-                  onClick={() => {
-                    handleLogout(); // ✅ logout only when confirmed
-                    setShowLogoutConfirm(false);
-                  }}
-                >
-                  Yes
-                </button>
-                <button
-                  className="btn"
-                  onClick={() => setShowLogoutConfirm(false)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+                    <div className="modalBackdrop">
+                      <div className="modalBox">
+                        <h3 style={{ color: "red" }}>Confirm Logout</h3>
+                        <h5 style={{ color: "black" }}>
+                          Are you sure you want to logout?
+                        </h5>
+                        <div className="modalButtons">
+                          <button
+                            className="btn"
+                            onClick={() => {
+                              handleLogout(); // ✅ logout only when confirmed
+                              setShowLogoutConfirm(false);
+                            }}
+                          >
+                            Yes
+                          </button>
+                          <button
+                            className="btn"
+                            onClick={() => setShowLogoutConfirm(false)}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
