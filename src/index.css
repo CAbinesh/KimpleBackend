@@ -281,7 +281,7 @@ button:hover {
   padding: 12px;
   border-radius: 8px;
   width: 30%; /* ensures 3 fit per row */
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 6px rgba(255, 0, 0, 0.656);
   word-wrap: break-word;
   backdrop-filter: blur(1px);
   width: 250px;
