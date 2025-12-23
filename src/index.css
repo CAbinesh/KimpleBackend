@@ -277,7 +277,7 @@ button:hover {
 }
 
 .note-card {
-  border: 1px solid red;
+  border: 4px inset red;
   padding: 12px;
   border-radius: 8px;
   width: 30%; /* ensures 3 fit per row */
@@ -293,7 +293,7 @@ button:hover {
   }
 }
 .note-card-2 {
-  border: 5px inset rgb(247, 243, 5);
+  border: 4px inset rgb(247, 243, 5);
   padding: 12px;
   border-radius: 8px;
   width: 90%;
