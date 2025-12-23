@@ -156,7 +156,7 @@ function OldNotes() {
             fontSize: "24px",
           }}
         >
-          <IoLibrary size={20} color="white"/> All Notes:
+          <IoLibrary   size={28} color="white"/>  All Notes:
         </h3>
         <div className="OldNotes-container">
           {notes.length === 0 ? (

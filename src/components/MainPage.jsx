@@ -151,7 +151,7 @@ function MainPage() {
         </div>
 
         <div className="Content" style={{ marginTop: "2rem" }}>
-          <h3><IoLibrary size={20} color="white"/> Last 3 Notes:</h3>
+          <h3>   <IoLibrary   size={28} color="white"/>   Last 3 Notes:</h3>
           <div
             className="Content-container"
             style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
