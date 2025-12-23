@@ -32,7 +32,7 @@ function MainPage() {
     fetchNotes();
   }, [navigate, API_URL]);
 
-  const latest = notes.slice(0, 3);
+  const latest = notes.slice(-3).reverse();
 
   const handleDelete = async (id) => {
     try {
