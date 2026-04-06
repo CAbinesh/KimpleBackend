@@ -6,12 +6,11 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import cors from "cors";
-import rateLimit from "express-rate-limit";
 import { body, validationResult } from "express-validator";
+import rateLimit from "express-rate-limit";
 import User from "../models/user.js";
 import Note from "../models/notes.js";
 import dotenv from "dotenv";
-import fetch from "node-fetch";
 
 dotenv.config();
 
@@ -26,7 +25,8 @@ app.use(cookieParser());
 app.use(
   cors({
     origin:
-      "https://kimplebackend-front.onrender.com",
+      // "https://kimplebackend-front.onrender.com",
+      "http://localhost:5173",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -95,7 +95,7 @@ const loginValidation = [
 
 // ===== Signup =====
 app.post("/api/signup", authLimiter, signupValidation, async (req, res) => {
-  const errors = validationResult(req);
+const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
@@ -131,17 +131,11 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
 
   try {
-    const { email, password, captchaToken } = req.body;
+    const { email, password } = req.body;
     // Verify reCAPTCHA
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-    const response = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
-      { method: "POST" }
-    );
-    const data = await response.json();
+  
 
-    if (!data.success)
-      return res.status(400).json({ message: "CAPTCHA failed" });
+   
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import JoditEditor from "jodit-react";
-import kimple from '../assets/kimple.png'
+import kimple from "../assets/kimple.png";
+import insta from "../assets/instagram.png";
+import linkedin from "../assets/linkedin.png";
+import whatsapp from "../assets/whatsapp.png";
 
 function New() {
   const [content, setContent] = useState("");
@@ -9,7 +12,7 @@ function New() {
   const editor = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   const noteToEdit = location.state?.note || null;
 
   // Load existing note content
@@ -23,10 +26,9 @@ const API_URL = import.meta.env.VITE_API_URL;
       readonly: false,
       placeholder: "Start typing your note...",
     }),
-    []
+    [],
   );
 
- 
   const handleSave = async () => {
     if (!content.trim()) return alert("Note is empty!");
     setIsSaving(true);
@@ -75,29 +77,28 @@ const API_URL = import.meta.env.VITE_API_URL;
   };
 
   return (
-    <div
-     className="oldcontbg"
-    >
-      <div className="Title">
-        
-      </div>
+    <div className="oldcontbg2">
 
       <div
-        className="Header2"
+        className="Header"
         style={{
-          maxWidth: "500px",
+          
           margin: "1rem auto",
-          justifyContent:'space-between',
+          justifyContent: "space-between",
           display: "flex",
         }}
       >
         <div style={{ display: "flex" }}>
-                <img className="logo"
-                  src={kimple} 
-                  alt="My App Logo" 
-                  style={{ height: "100px", marginLeft: "10px", }}
-                /></div>
-        <h2 className="profilefont"style={{marginRight:'200px'}}>{noteToEdit ? "Edit Note" : "New Note"}</h2>
+          <img
+            className="logo"
+            src={kimple}
+            alt="My App Logo"
+            style={{ height: "100px", marginLeft: "10px" }}
+          />
+        </div>
+        <h2 className="profilefont2" >
+          {noteToEdit ? "Edit Note" : "New Note"}
+        </h2>
       </div>
 
       <div className="NewHeader">
@@ -126,6 +127,7 @@ const API_URL = import.meta.env.VITE_API_URL;
             Delete ❌
           </button>
         )}
+        
       </div>
 
       <div className="editor-container" style={{ marginTop: "1rem" }}>
@@ -139,11 +141,21 @@ const API_URL = import.meta.env.VITE_API_URL;
       </div>
 
       {/* Render saved content with formatting (instead of raw <p> tags) */}
-      
 
-      <div className="Footer" style={{ marginTop: "2rem", textAlign: "center" }}>
-        <h5>©2025 All Rights Reserved</h5>
-      </div>
+      <div className="footer">
+              <div className="footerCentreline"></div>
+              <h5>©2025 All Rights Reserved</h5>
+              <div className="footer2">
+                <p>😊 About Us</p>
+                <p>📞 Contact</p>
+                <p>🫂 Support</p>
+              </div>
+              <div className="footer3">
+                <img src={whatsapp} alt="whatsapp" />
+                <img src={linkedin} alt="linkedin" />
+                <img src={insta} alt="instagram" />
+              </div>
+            </div>
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
-import img002 from "../assets/img002.jpg";
 import kimple from "../assets/kimple.png";
 
 function Auth() {
@@ -12,20 +11,18 @@ function Auth() {
   const [fullName, setFullName] = useState("");
   const [error, setError] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [captchaToken, setCaptchaToken] = useState(null);
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
   const SITE_KEY = import.meta.env.VITE_SITE_KEY;
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (isLogin &&!captchaToken) return alert("Please verify CAPTCHA");
     try {
       setError("");
 
       const url = isLogin ? `${API_URL}/api/login` : `${API_URL}/api/signup`;
 
       const body = isLogin
-        ? JSON.stringify({ email, password, captchaToken })
+        ? JSON.stringify({ email, password })
         : JSON.stringify({ fullName, email, password });
 
       const headers = { "Content-Type": "application/json" };
@@ -60,29 +57,21 @@ function Auth() {
   };
 
   return (
-    <div
-      className="auth-container"
-      style={{
-        backgroundImage: `url(${img002})`,
-        backgroundSize: "contain",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="auth-container">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          className="logo"
+          src={kimple}
+          alt="My App Logo"
+        />
+      </div>
       <div className="auth-form">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            className="logo"
-            src={kimple}
-            alt="My App Logo"
-            style={{ height: "150px", width: "150px",marginBottom:"0px" }}
-          />
-        </div>
         <h1>{isLogin ? "Login" : "Create new Account"}</h1>
 
         {!isLogin && (
@@ -108,19 +97,6 @@ function Auth() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter Password"
           />
-          {isLogin && (<div
-            style={{
-              transform: window.innerWidth < 640 ? "scale(1)" : "scale(1)",
-              transformOrigin: "0 0",
-              marginTop: "1rem",
-            }}
-          >
-            <ReCAPTCHA
-              sitekey={SITE_KEY}
-              onChange={setCaptchaToken}
-              size={window.innerWidth < 480 ? "compact" : "normal"}
-            />
-          </div>)}
 
           <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </form>
@@ -140,6 +116,7 @@ function Auth() {
           </span>
         </p>
       </div>
+      
     </div>
   );
 }
