@@ -231,10 +231,10 @@ function MainPage() {
                   }}
                 />
 
-                <button onClick={() => handleEdit(note)}>✏️ Edit</button>
-                <button
+                <button className="cardButton" onClick={() => handleEdit(note)}>✏️ Edit</button>
+                <button className="cardButton" style={{color:"red"}}
                   onClick={() => handleDelete(note.id)}
-                  style={{ marginRight: "0.5rem" }}
+                  
                 >
                   ❌ Delete
                 </button>

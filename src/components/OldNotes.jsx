@@ -163,8 +163,8 @@ function OldNotes() {
                     __html: DOMPurify.sanitize(note.content),
                   }}
                 />
-                <button onClick={() => handleEdit(note)}>✏️ Edit</button>
-                <button onClick={() => handleDelete(note.id)}>❌ Delete</button>
+                <button className="cardButton" onClick={() => handleEdit(note)}>✏️ Edit</button>
+                <button className="cardButton" style={{color:"red"}} onClick={() => handleDelete(note.id)}>❌ Delete</button>
               </div>
             ))
           )}

@@ -98,7 +98,7 @@ function Auth() {
             placeholder="Enter Password"
           />
 
-          <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
+          <button className="authBtn" type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </form>
 
         {error && <p style={{ color: "red", marginTop: "0.5rem" }}>{error}</p>}
