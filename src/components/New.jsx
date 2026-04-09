@@ -5,6 +5,13 @@ import kimple from "../assets/kimple.png";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
+import back from "../assets/arrow-left.png";
+import deletes from "../assets/delete.png";
+import save from "../assets/diskette.png";
+import edit from "../assets/edit.png";
+
+
+
 
 function New() {
   const [content, setContent] = useState("");
@@ -78,11 +85,9 @@ function New() {
 
   return (
     <div className="oldcontbg2">
-
       <div
         className="Header"
         style={{
-          
           margin: "1rem auto",
           justifyContent: "space-between",
           display: "flex",
@@ -96,13 +101,15 @@ function New() {
             style={{ height: "100px", marginLeft: "10px" }}
           />
         </div>
-        <h2 className="profilefont2" >
+        <h2 className="profilefont2">
           {noteToEdit ? "Edit Note" : "New Note"}
         </h2>
       </div>
 
       <div className="NewHeader">
-        <button onClick={() => navigate("/")}>←</button>
+        <button className="navBtn" onClick={() => navigate("/")}>
+          <img src={back} alt="favorite" className="icon" />
+        </button>
         {noteToEdit ? (
           <button
             title="Update"
@@ -110,7 +117,7 @@ function New() {
             onClick={() => handleUpdate(false)}
             disabled={isSaving}
           >
-            Update ✏️
+            Update <img src={edit} alt="favorite" className="icon" />
           </button>
         ) : (
           <button
@@ -119,15 +126,14 @@ function New() {
             onClick={handleSave}
             disabled={isSaving}
           >
-            Save ✅
+            Save <img src={save} alt="favorite" className="icon" />
           </button>
         )}
         {noteToEdit && (
           <button title="Delete" className="dltbtn" onClick={handleDelete}>
-            Delete ❌
+            Delete <img src={deletes} alt="favorite" className="icon" />
           </button>
         )}
-        
       </div>
 
       <div className="editor-container" style={{ marginTop: "1rem" }}>
@@ -143,19 +149,19 @@ function New() {
       {/* Render saved content with formatting (instead of raw <p> tags) */}
 
       <div className="footer">
-              <div className="footerCentreline"></div>
-              <h5>©2025 All Rights Reserved</h5>
-              <div className="footer2">
-                <p>😊 About Us</p>
-                <p>📞 Contact</p>
-                <p>🫂 Support</p>
-              </div>
-              <div className="footer3">
-                <img src={whatsapp} alt="whatsapp" />
-                <img src={linkedin} alt="linkedin" />
-                <img src={insta} alt="instagram" />
-              </div>
-            </div>
+        <div className="footerCentreline"></div>
+        <h5>©2025 All Rights Reserved</h5>
+        <div className="footer2">
+          <p>😊 About Us</p>
+          <p>📞 Contact</p>
+          <p>🫂 Support</p>
+        </div>
+        <div className="footer3">
+          <img src={whatsapp} alt="whatsapp" />
+          <img src={linkedin} alt="linkedin" />
+          <img src={insta} alt="instagram" />
+        </div>
+      </div>
     </div>
   );
 }

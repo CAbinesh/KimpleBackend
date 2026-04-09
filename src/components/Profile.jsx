@@ -6,7 +6,7 @@ import home from "../assets/mansion.png";
 import note from "../assets/notes.png";
 import create from "../assets/magic-wand.png";
 import { FaPowerOff } from "react-icons/fa6";
-import { PiUserDuotone } from "react-icons/pi";
+import profile from "../assets/verified.png";
 import favorite from "../assets/favorite.png";
 import recent from "../assets/history.png";
 import kimple from "../assets/kimple.png";
@@ -131,7 +131,8 @@ function Profile() {
           }
         >
           {" "}
-          <PiUserDuotone /> Profile{" "}
+          <img src={profile} alt="profile" />
+          Profile
         </NavLink>
         <h3
           className="Logoutprofilefont"

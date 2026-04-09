@@ -1,71 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../App";
+import { NavLink } from "react-router-dom";
 import DOMPurify from "dompurify";
 import home from "../assets/mansion.png";
 import note from "../assets/notes.png";
 import create from "../assets/magic-wand.png";
-import dashboard from "../assets/dashboard.png";
+import favorite from "../assets/favorite.png";
+import recent from "../assets/history.png";
+import paper from "../assets/paper.png";
+import restore from "../assets/arrow.png";
 import profile from "../assets/verified.png";
 import kimple from "../assets/kimple.png";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import deletes from "../assets/delete.png";
-import edit from "../assets/edit.png";
-
-function OldNotes() {
-  const navigate = useNavigate();
+function Trashbin() {
   const [notes, setNotes] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
-  useEffect(() => {
-    const fetchNotes = async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/notes/me`, {
-          credentials: "include",
-        });
-        if (!res.ok) {
-          navigate("/auth");
-          return;
-        }
-        const data = await res.json();
-        const mappedNotes = data.map((note) => ({ ...note, id: note._id }));
-        setNotes(mappedNotes);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchNotes();
-  }, [navigate, API_URL]);
 
-  const handleDelete = async (id) => {
+  const fetchBin = async () => {
+    const res = await fetch(`${API_URL}/api/notes/bin`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setNotes(data);
+  };
+  fetchBin();
+  useEffect(() => {}, [API_URL]);
+  const handleRestore = async (id) => {
     try {
-      const res = await fetch(`${API_URL}/api/notes/delete/${id}`, {
+      await fetch(`${API_URL}/api/notes/restore/${id}`, {
         method: "PUT",
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Failed to delete note");
-      setNotes((prev) => prev.filter((note) => note.id !== id));
+      fetchBin();
     } catch (err) {
       console.log(err);
-      alert("Error deleting note");
     }
   };
-  const getTitle = (content) => {
-    if (!content) return "untitled";
-    const text = content.replace(/<[^>]+>/g, "").trim();
-    const firstLine = text.split("\n")[0];
-    return firstLine.length > 40 ? firstLine.slice(0, 40) + "..." : firstLine;
+  const handleDeletePermanent = async (id) => {
+    try {
+      await fetch(`${API_URL}/api/notes/permanent/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      fetchBin();
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  const handleEdit = (note) => navigate("/new", { state: { note } });
-
   return (
     <div className="oldcontbg">
       <div className="Header">
         <img className="headerLogo" src={kimple} alt="" />
         <div className="rightside">
-          <h2 className="profilefont2">All Notes</h2>
+          <h2 className="profilefont2">Trash Bin</h2>
         </div>
       </div>
 
@@ -100,15 +88,23 @@ function OldNotes() {
           <img src={note} alt="create" className="icon" /> Notes
         </NavLink>
 
-        
         <NavLink
           style={{ cursor: "pointer" }}
-          to="/trashBin"
+          to="/recent"
           className={({ isActive }) =>
             isActive ? "profilefont active" : "profilefont"
           }
         >
-          <img src={deletes} alt="favorite" className="icon" /> TrashBin
+          <img src={recent} alt="recent" className="icon" /> Recent
+        </NavLink>
+        <NavLink
+          style={{ cursor: "pointer" }}
+          to="/recent"
+          className={({ isActive }) =>
+            isActive ? "profilefont active" : "profilefont"
+          }
+        >
+          <img src={favorite} alt="favorite" className="icon" /> Favorite
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
@@ -118,18 +114,22 @@ function OldNotes() {
           }
         >
           {" "}
-          <img src={profile} alt="profile"  /> Profile
+          <img src={profile} alt="profile" />
+          Profile{" "}
         </NavLink>
       </div>
-
       <div className="Content">
         <h3
           style={{
+            textDecoration: "underline",
+            color: "red",
+            opacity: 0.7,
             fontWeight: "900",
-            fontSize: "24px",
+            fontSize: "20px",
+            margin: "30px",
           }}
         >
-        <img src={dashboard} alt="create" className="contenticon" />  Notes Dashboard
+          Deleted notes will appear here
         </h3>
         <div className="OldNotes-container">
           {notes.length === 0 ? (
@@ -141,37 +141,31 @@ function OldNotes() {
                 marginBottom: "8px",
               }}
             >
-              No Data found ＞︿＜
+              Your trash is empty 🗑
             </h4>
           ) : (
             notes.map((note) => (
-              <div key={note.id} className="note-card">
-                <div className="notecardTitle">
-                  <h3>{getTitle(note.content)}</h3>
-                  <small>
-                    {new Date(note.createdAt).toLocaleString("en-IN", {
-                      dateStyle: "medium",
-                      timeStyle: "short",
-                    })}
-                  </small>
-                </div>
-                {/* ✅ render formatted HTML */}
+              <div key={note.id || note._id} className="note-card">
                 <div
-                  className="note-content"
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(note.content),
                   }}
                 />
-                <button className="cardButton" onClick={() => handleEdit(note)}>
-                  Edit <img src={edit} alt="favorite" className="icon" />
+
+                <button
+                  className="cardButton"
+                  onClick={() => handleRestore(note.id || note._id)}
+                >
+                  <img src={restore} alt="favorite" className="icon" /> Restore
                 </button>
+
                 <button
                   className="cardButton"
                   style={{ color: "red" }}
-                  onClick={() => handleDelete(note.id)}
+                  onClick={() => handleDeletePermanent(note.id || note._id)}
                 >
-                  Move to Bin{" "}
-                  <img src={deletes} alt="favorite" className="icon" />{" "}
+                  <img src={paper} alt="favorite" className="icon" /> Delete
+                  Permanent
                 </button>
               </div>
             ))
@@ -196,4 +190,4 @@ function OldNotes() {
   );
 }
 
-export default OldNotes;
+export default Trashbin;

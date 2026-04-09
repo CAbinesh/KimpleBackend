@@ -6,7 +6,7 @@ import New from "./components/New";
 import OldNotes from "./components/OldNotes";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
-
+import Trashbin from "./components/Trashbin"
 export const AuthContext = createContext();
 
 function App() {
@@ -83,6 +83,10 @@ function App() {
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/trashBin"
+          element={user ? <Trashbin /> : <Navigate to="/auth" />}
         />
         <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
         <Route path="*" element={<Navigate to="/" />} />

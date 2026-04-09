@@ -29,7 +29,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 // ===== MongoDB =====
@@ -94,7 +94,7 @@ const loginValidation = [
 
 // ===== Signup =====
 app.post("/api/signup", authLimiter, signupValidation, async (req, res) => {
-const errors = validationResult(req);
+  const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
@@ -132,9 +132,6 @@ app.post("/api/login", authLimiter, loginValidation, async (req, res) => {
   try {
     const { email, password } = req.body;
     // Verify reCAPTCHA
-  
-
-   
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
@@ -198,9 +195,11 @@ app.post("/api/notes", authMiddleware, async (req, res) => {
 // Get Notes
 app.get("/api/notes/me", authMiddleware, async (req, res) => {
   try {
-    const notes = await Note.find({ userId: req.user.id }).sort({
-      createdAt: -1,
-    });
+    const notes = await Note.find({ userId: req.user.id, deleted: false }).sort(
+      {
+        createdAt: -1,
+      },
+    );
     res.json(notes.map((n) => ({ ...n.toObject(), id: n._id })));
   } catch (err) {
     res.status(500).json({ error: err.message, message: "Server error" });
@@ -213,7 +212,7 @@ app.put("/api/notes/:id", authMiddleware, async (req, res) => {
     const updated = await Note.findOneAndUpdate(
       { _id: req.params.id, userId: req.user.id },
       { content: req.body.content },
-      { new: true }
+      { new: true },
     );
     if (!updated) return res.status(404).json({ message: "Note not found" });
     res.json({ ...updated.toObject(), id: updated._id });
@@ -221,9 +220,48 @@ app.put("/api/notes/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ error: err.message, message: "Server error" });
   }
 });
-
+// Move to bin
+app.put("/api/notes/delete/:id", authMiddleware, async (req, res) => {
+  try {
+    const note = await Note.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.id },
+      { deleted: true },
+      { new: true },
+    );
+    if (!note) return res.status(404).json({ message: "Note not found!" });
+    res.json({ message: "Moved to Bin 🗑️" });
+  } catch (err) {
+    res.status(500).json({ error: err.message, message: "Server error" });
+  }
+});
+// Trash bin link
+app.get("/api/notes/bin", authMiddleware, async (req, res) => {
+  try {
+    const notes = await Note.find({
+      userId: req.user.id,
+      deleted: true,
+    }).sort({ createdAt: -1 });
+    res.json(notes.map((n) => ({ ...n.toObject(), id: n._id })));
+  } catch (err) {
+    res.status(500).json({ error: err.message, message: "Server error" });
+  }
+});
+// Restore the bin
+app.put("/api/notes/restore/:id", authMiddleware, async (req, res) => {
+  try {
+    const note = await Note.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.id },
+      { deleted: false },
+      { new: true },
+    );
+    if (!note) return res.status(404).json({ message: "Note not found!" });
+    res.json({ message: "Restored Sucessfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message, message: "Server error" });
+  }
+});
 // Delete Note
-app.delete("/api/notes/:id", authMiddleware, async (req, res) => {
+app.delete("/api/notes/permanent/:id", authMiddleware, async (req, res) => {
   try {
     const deleted = await Note.findOneAndDelete({
       _id: req.params.id,

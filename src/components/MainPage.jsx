@@ -11,11 +11,13 @@ import kimple from "../assets/kimple.png";
 import home from "../assets/mansion.png";
 import note from "../assets/notes.png";
 import create from "../assets/magic-wand.png";
-import favorite from "../assets/favorite.png";
 import recent from "../assets/history.png";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
+import deletes from "../assets/delete.png";
+import edit from "../assets/edit.png";
+
 function MainPage() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
@@ -60,11 +62,11 @@ function MainPage() {
     .slice(0, 3);
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`${API_URL}/api/notes/${id}`, {
-        method: "DELETE",
+      const res = await fetch(`${API_URL}/api/notes/delete/${id}`, {
+        method: "PUT",
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Delete failed");
+      if (!res.ok) throw new Error("Move to bin failed");
       setNotes((prev) => prev.filter((note) => note.id !== id));
     } catch (err) {
       console.log(err);
@@ -197,12 +199,12 @@ function MainPage() {
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
-          to="/recent"
+          to="/trashBin"
           className={({ isActive }) =>
             isActive ? "profilefont active" : "profilefont"
           }
         >
-          <img src={favorite} alt="favorite" className="icon" /> Favorite
+          <img src={deletes} alt="favorite" className="icon" /> TrashBin
         </NavLink>
       </div>
       {/* greet box */}
@@ -219,7 +221,7 @@ function MainPage() {
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
         >
           {latest.length === 0 ? (
-            <h1 style={{ color: "white" }}>Create new ☝️</h1>
+            <h4 style={{ color: "black" }}> Nothing here yet — create your first note ✨</h4>
           ) : (
             latest.map((note) => (
               <div key={note.id} className="note-card">
@@ -231,12 +233,15 @@ function MainPage() {
                   }}
                 />
 
-                <button className="cardButton" onClick={() => handleEdit(note)}>✏️ Edit</button>
-                <button className="cardButton" style={{color:"red"}}
+                <button className="cardButton" onClick={() => handleEdit(note)}>
+                  Edit <img src={edit} alt="favorite" className="icon" />
+                </button>
+                <button
+                  className="cardButton"
+                  style={{ color: "red" }}
                   onClick={() => handleDelete(note.id)}
-                  
                 >
-                  ❌ Delete
+                  Move to Bin <img src={deletes} alt="favorite" className="icon" />
                 </button>
               </div>
             ))

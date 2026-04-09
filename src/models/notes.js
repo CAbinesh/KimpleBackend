@@ -11,6 +11,10 @@ const notesSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true
+    },
+    deleted:{
+      type:Boolean,
+      default:false
     }
   },
   {

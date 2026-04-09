@@ -8,7 +8,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  margin: 0;
+  margin: 10px;
   padding: 0;
 }
 
@@ -49,7 +49,6 @@ body {
 .sideBar {
   grid-area: sd;
   background-color: #feffff;
-  padding: 10px;
   border-radius: 10px;
   max-height: 500px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -151,7 +150,6 @@ body {
     font-size: 0.8rem;
     border-radius: 10px;
     min-height: auto;
-    padding: 5px 0;
   }
 
   .profilefont {
@@ -272,35 +270,73 @@ body {
   }
 }
 
+/* CSS */
 .cardButton {
-  background-image: linear-gradient(
-    to right,
-    #f8f6f6 0%,
-    #53346d 51%,
-    #000000 100%
-  );
+  background-color: #ffffff;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family:
+    Circular,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 10px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition:
+    box-shadow 0.2s,
+    -ms-transform 0.1s,
+    -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
 }
 
-.cardButton {
-  font-family: "Cal Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  margin: 10px;
-  padding: 10px 15px;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  box-shadow: 0 0 20px #eee;
-  border-radius: 10px;
-  display: block;
-  border: none;
+.cardButton:focus-visible {
+  box-shadow:
+    #222222 0 0 0 2px,
+    rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow 0.2s;
 }
 
 .cardButton:hover {
-  background-position: right center;
-  color: #fff;
-  text-decoration: none;
+  background-color: #f7f7f7;
+  border-color: #000000;
+  transform: scale(1.06);
+}
+
+.cardButton:disabled {
+  border-color: #dddddd;
+  color: #dddddd;
+  cursor: not-allowed;
+  opacity: 1;
+}
+/* for imges in buttons */
+button img {
+  width: 20px; /* fixed width */
+  min-width: 20px; /* ensures alignment */
+  text-align: center;
+  font-size: 24px;
+}
+.contenticon{
+  width: 24px; /* fixed width */
+  min-width: 24px; /* ensures alignment */
+  text-align: center;
+  font-size: 24px;
 }
 
 /* confrim button */
@@ -317,7 +353,38 @@ body {
 }
 /* Save Button */
 .savebtn {
-  background: white;
+  background-color: #ffffff;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family:
+    Circular,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 10px;
+  margin: 10px;
+  outline: none;
+  padding: 13px 13px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition:
+    box-shadow 0.2s,
+    -ms-transform 0.1s,
+    -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
   color: black;
 }
 
@@ -329,7 +396,38 @@ body {
 
 /* Delete Button */
 .dltbtn {
-  background: white;
+  background-color: #ffffff;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family:
+    Circular,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 10px;
+  margin: 0;
+  outline: none;
+  padding: 13px 13px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition:
+    box-shadow 0.2s,
+    -ms-transform 0.1s,
+    -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
   color: black;
 }
 
@@ -337,6 +435,40 @@ body {
   background: linear-gradient(135deg, #ed0505, #c33d0d, #9b3f07);
   transform: scale(1.05);
   color: wheat;
+}
+
+/* CSS */
+.navBtn {
+  background-color: #fff000;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 5px;
+  text-align: center;
+  transition: 200ms;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.navBtn:not(:disabled):hover,
+.navBtn:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.2),
+    0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.navBtn:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
 }
 
 .note-card p {
