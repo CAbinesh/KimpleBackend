@@ -529,7 +529,7 @@ button img {
 }
 @media screen and (max-width: 640px) {
   .note-card {
-    width: 70%;
+    width: 90%;
     font-size: 0.95rem;
     padding: 10px;
     margin: auto;
@@ -545,7 +545,6 @@ button img {
   .OldNotes-container {
     display: flex;
     flex-direction: column;
-    width: 70%;
     font-size: 0.95rem;
     padding: 10px;
     margin: auto;
