@@ -4,7 +4,6 @@ import DOMPurify from "dompurify";
 import home from "../assets/mansion.png";
 import note from "../assets/notes.png";
 import create from "../assets/magic-wand.png";
-import favorite from "../assets/favorite.png";
 import recent from "../assets/history.png";
 import paper from "../assets/paper.png";
 import restore from "../assets/arrow.png";
@@ -13,6 +12,8 @@ import kimple from "../assets/kimple.png";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
+import deletes from "../assets/delete.png";
+
 function Trashbin() {
   const [notes, setNotes] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
@@ -98,14 +99,14 @@ function Trashbin() {
           <img src={recent} alt="recent" className="icon" /> Recent
         </NavLink>
         <NavLink
-          style={{ cursor: "pointer" }}
-          to="/recent"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={favorite} alt="favorite" className="icon" /> Favorite
-        </NavLink>
+                  style={{ cursor: "pointer" }}
+                  to="/trashBin"
+                  className={({ isActive }) =>
+                    isActive ? "profilefont active" : "profilefont"
+                  }
+                >
+                  <img src={deletes} alt="favorite" className="icon" /> TrashBin
+                </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
           to="/profile"
