@@ -348,7 +348,7 @@ button img {
 .btn {
   background: linear-gradient(-135deg, #a71cf7, #620337, #a2ec0e);
   transition: all 0.3s ease-in;
-  color: black;
+  color: whitesmoke;
   font-size: 18px;
 }
 .btn:hover {
