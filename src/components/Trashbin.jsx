@@ -147,6 +147,7 @@ function Trashbin() {
             notes.map((note) => (
               <div key={note.id || note._id} className="note-card">
                 <div
+                  className="note-content"
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(note.content),
                   }}

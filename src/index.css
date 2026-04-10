@@ -272,13 +272,17 @@ body {
 
 /* CSS */
 .cardButton {
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  padding: 10px 14px;
+
   background-color: #ffffff;
-  border: 1px solid #222222;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #222222;
-  cursor: pointer;
-  display: inline-block;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
   font-family:
     Circular,
     -apple-system,
@@ -286,24 +290,16 @@ body {
     Roboto,
     "Helvetica Neue",
     sans-serif;
-  font-size: 16px;
+
+  font-size: 14px;
   font-weight: 600;
-  line-height: 10px;
-  margin: 0;
-  outline: none;
-  padding: 13px 23px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  transition:
-    box-shadow 0.2s,
-    -ms-transform 0.1s,
-    -webkit-transform 0.1s,
-    transform 0.1s;
-  user-select: none;
-  -webkit-user-select: none;
-  width: auto;
+  line-height: normal;
+
+  color: #222;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
 }
 
 .cardButton:focus-visible {
@@ -489,7 +485,8 @@ button img {
   }
 }
 .note-content {
-  max-height: 300px; /* 👈 control card content height */
+  height: 200px;
+  max-height: 460px; /* 👈 control card content height */
   overflow-y: auto; /* 👈 enables vertical scroll */
   padding-right: 2px;
 }
@@ -499,8 +496,8 @@ button img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 250px;
-  min-height: 350px;
+   width: 260px;
+  min-height: 300px;
   background: rgba(255, 255, 255, 0.825);
   border-radius: 1rem;
   box-shadow:
@@ -520,7 +517,6 @@ button img {
 .note-cardTitle {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   margin-bottom: 8px;
 }
 .notecardTitle small {
@@ -530,6 +526,7 @@ button img {
 @media screen and (max-width: 640px) {
   .note-card {
     width: 90%;
+    height: 400px;
     font-size: 0.95rem;
     padding: 10px;
     margin: auto;

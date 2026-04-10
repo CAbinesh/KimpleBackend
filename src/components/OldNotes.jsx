@@ -55,7 +55,7 @@ function OldNotes() {
     if (!content) return "untitled";
     const text = content.replace(/<[^>]+>/g, "").trim();
     const firstLine = text.split("\n")[0];
-    return firstLine.length > 40 ? firstLine.slice(0, 40) + "..." : firstLine;
+    return firstLine.length > 20 ? firstLine.slice(0, 20) + "..." : firstLine;
   };
 
   const handleEdit = (note) => navigate("/new", { state: { note } });
