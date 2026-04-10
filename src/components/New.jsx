@@ -95,10 +95,10 @@ function New() {
       >
         <div style={{ display: "flex" }}>
           <img
-            className="logo"
+            className="headerLogo"
             src={kimple}
             alt="My App Logo"
-            style={{ height: "100px", marginLeft: "10px" }}
+            style={{  marginLeft: "10px" }}
           />
         </div>
         <h2 className="profilefont2">

@@ -24,7 +24,11 @@ body {
   grid-template-areas: "hd hd" "sd gt" "sd mn" "ft ft";
 }
 .Header {
+  background-image: url("/header.png");
+  background-position: center;
+  background-size: cover;
   border-bottom: 2px solid yellow;
+  border-radius: 5px;
   box-shadow: 0 6px 12px -4px yellowgreen;
   display: flex;
   justify-content: space-between;
@@ -47,8 +51,11 @@ body {
   background-size: cover;
 }
 .sideBar {
+   background-image: url("/header.png");
+  background-position: center;
+  background-size: cover;
   grid-area: sd;
-  background-color: #feffff;
+  background-color: #feffff02;
   border-radius: 10px;
   max-height: 500px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -60,6 +67,7 @@ body {
   gap: 6px; /* equal space between icon & text */
   padding: 10px 12px;
   color: #060606;
+  font-weight: 700;
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none; /* ❌ remove underline */
@@ -127,6 +135,7 @@ body {
   border-right: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: auto;
+  cursor: pointer;
   text-align: center;
   letter-spacing: 2px;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -337,7 +346,8 @@ button img {
 
 /* confrim button */
 .btn {
-  background: white;
+  background: linear-gradient(-135deg, #a71cf7, #620337, #a2ec0e);
+  transition: all 0.3s ease-in;
   color: black;
   font-size: 18px;
 }
@@ -561,13 +571,14 @@ button img {
   align-items: center;
   font-size: 23px; /* make settings bigger */
   transition: all 0.5s ease;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    border-left: 2px solid rgba(0, 0, 0, 0.8);
   border-radius: 5px;
 }
 .rightsidesvg:hover {
   color: orange;
   background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* softer shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* softer shadow */
   transform: translateY(-2px); /* subtle lift effect */
   border-radius: 50%;
 }
