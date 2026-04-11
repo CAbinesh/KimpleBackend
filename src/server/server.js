@@ -163,7 +163,10 @@ app.post("/api/logout", (req, res) => {
   res.clearCookie("token", { httpOnly: true, secure: true, sameSite: "none" });
   res.json({ message: "Logged out" });
 });
-
+// for google schedule
+app.get("/ping", (req, res) => {
+  res.status(200).send("OK");
+});
 // ===== Get Current User =====
 app.get("/api/me", authMiddleware, async (req, res) => {
   try {
@@ -174,6 +177,7 @@ app.get("/api/me", authMiddleware, async (req, res) => {
     res.status(500).json({ error: err.message, message: "Server error" });
   }
 });
+
 
 // ===== Notes CRUD =====
 app.use("/api/notes", notesLimiter);
