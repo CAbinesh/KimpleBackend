@@ -7,12 +7,12 @@ import note from "../assets/notes.png";
 import create from "../assets/magic-wand.png";
 import { FaPowerOff } from "react-icons/fa6";
 import profile from "../assets/verified.png";
-import favorite from "../assets/favorite.png";
 import recent from "../assets/history.png";
 import kimple from "../assets/kimple.png";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
+import deletes from "../assets/delete.png";
 
 function Profile() {
   const navigate = useNavigate();
@@ -116,12 +116,12 @@ function Profile() {
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
-          to="/recent"
+          to="/trashBin"
           className={({ isActive }) =>
             isActive ? "profilefont active" : "profilefont"
           }
         >
-          <img src={favorite} alt="favorite" className="icon" /> Favorite
+          <img src={deletes} alt="favorite" className="icon" /> TrashBin
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
