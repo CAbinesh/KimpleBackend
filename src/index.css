@@ -124,6 +124,7 @@ body {
   }
 }
 .Logoutprofilefont {
+  margin-top: 50px;
   padding: 5px;
   border-left: 2px solid rgba(0, 0, 0, 0.1);
   border-right: 2px solid rgba(0, 0, 0, 0.1);
@@ -145,6 +146,8 @@ body {
   border-bottom-color: #667eea;
 }
 @media screen and (max-width: 768px) {
+  .Logoutprofilefont {
+  margin-top: 5px;}
   .sideBar {
     display: flex;
     flex-direction: row;
@@ -554,7 +557,7 @@ button img {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 20px;
   cursor: pointer;
 }
 .rightsidesvg img {
@@ -573,8 +576,8 @@ button img {
   .rightside img {
     display: flex;
     justify-content: flex-end;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 35px;
   }
 }
 .dropdown {

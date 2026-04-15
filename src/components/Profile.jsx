@@ -134,6 +134,8 @@ function Profile() {
           <img src={profile} alt="profile" />
           Profile
         </NavLink>
+       
+       
         <h3
           className="Logoutprofilefont"
           onClick={() => setShowLogoutConfirm(true)}
