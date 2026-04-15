@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
 
-import { GrSettingsOption } from "react-icons/gr";
-import { HiOutlineSparkles } from "react-icons/hi2";
+import settings from "../assets/settings.png";
+import explore from "../assets/confetti.png";
 import kimple from "../assets/kimple.png";
 import home from "../assets/mansion.png";
 import note from "../assets/notes.png";
@@ -97,10 +97,23 @@ function MainPage() {
         </div>
         <div className="rightside">
           <div className="rightsidesvg">
-            <HiOutlineSparkles />
+            <img
+              src={explore}
+              title="Explore"
+              alt="explore"
+              className="icon"
+              onClick={() => navigate("/explore")}
+              
+            />
+            <link rel="stylesheet" href="" />
           </div>
           <div className="rightsidesvg">
-            <GrSettingsOption />{" "}
+            <img
+              src={settings}
+              title="settings"
+              alt="settings"
+              className="icon"
+            />
           </div>
           <div className="dropdown">
             <div className="dropdownArea">
@@ -221,7 +234,10 @@ function MainPage() {
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
         >
           {latest.length === 0 ? (
-            <h4 style={{ color: "black" }}> Nothing here yet — create your first note ✨</h4>
+            <h4 style={{ color: "black" }}>
+              {" "}
+              Nothing here yet — create your first note ✨
+            </h4>
           ) : (
             latest.map((note) => (
               <div key={note.id} className="note-card">
@@ -241,7 +257,8 @@ function MainPage() {
                   style={{ color: "red" }}
                   onClick={() => handleDelete(note.id)}
                 >
-                  Move to Bin <img src={deletes} alt="favorite" className="icon" />
+                  Move to Bin{" "}
+                  <img src={deletes} alt="favorite" className="icon" />
                 </button>
               </div>
             ))

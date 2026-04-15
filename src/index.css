@@ -8,7 +8,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  margin: 0;
+  margin: 3px;
   padding: 0;
 }
 
@@ -33,7 +33,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 50px 0px 20px;
   grid-area: hd;
 }
 .profilelogo1 {
@@ -51,7 +50,7 @@ body {
   background-size: cover;
 }
 .sideBar {
-   background-image: url("/header.png");
+  background-image: url("/header.png");
   background-position: center;
   background-size: cover;
   grid-area: sd;
@@ -276,7 +275,7 @@ body {
 
 /* CSS */
 .cardButton {
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
@@ -303,7 +302,6 @@ body {
   cursor: pointer;
 
   transition: all 0.2s ease;
-
 }
 
 .cardButton:focus-visible {
@@ -332,7 +330,7 @@ button img {
   text-align: center;
   font-size: 24px;
 }
-.contenticon{
+.contenticon {
   width: 24px; /* fixed width */
   min-width: 24px; /* ensures alignment */
   text-align: center;
@@ -501,7 +499,7 @@ button img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-   width: 260px;
+  width: 260px;
   min-height: 300px;
   background: rgba(255, 255, 255, 0.825);
   border-radius: 1rem;
@@ -557,35 +555,31 @@ button img {
   flex-direction: row;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 }
-.rightsidesvg {
+.rightsidesvg img {
   display: flex;
   width: 40px;
   height: 40px;
   justify-content: center;
   align-items: center;
-  font-size: 23px; /* make settings bigger */
+  font-size: 20px; /* make settings bigger */
   transition: all 0.5s ease;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
-    border-left: 2px solid rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
 }
-.rightsidesvg:hover {
-  color: orange;
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* softer shadow */
-  transform: translateY(-2px); /* subtle lift effect */
-  border-radius: 50%;
+.rightsidesvg :hover {
+  transform: scale(1.1); /* subtle lift effect */
 }
 @media screen and (max-width: 768px) {
-  .rightsidesvg {
+  .rightside img {
     display: flex;
     justify-content: flex-end;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 }
-
+.dropdown {
+  position: relative; /* 🔥 parent reference */
+}
 .dropdownArea {
   display: flex;
   flex-direction: column;
@@ -594,6 +588,8 @@ button img {
 
 .dropdown-menu {
   position: absolute;
+    top: 100%;     /* below profile */
+  right: 0; 
   background: #ffffff;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -665,8 +661,8 @@ button img {
     flex-direction: column;
   }
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 350px;
   }
 }
 
@@ -1008,4 +1004,161 @@ button img {
   height: 1px;
   justify-content: center;
   margin: 20px auto;
+}
+.explore {
+  display: flex;
+  gap: 20px;
+  align-items: center; /* center horizontally */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.expTitle img {
+  width: 100%;
+  height: 20%;
+}
+.navBtnZ {
+ position: absolute;
+  top: 2vw;
+  left: 2vw;
+  z-index: 9999;
+background-color: #fff000;
+  border-radius: 12px;
+  text-align: center;
+  transition: 200ms;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  color: #000;
+   margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.6em 1.2em;
+  font-size: clamp(12px, 2vw, 16px);
+
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.navBtnZ:not(:disabled):hover,
+.navBtnZ:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.2),
+    0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.navBtnZ:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
+.card {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  border-radius: 14px;
+  z-index: 1111;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;
+}
+.card img {
+  height: 400px;
+  width: 400px;
+}
+.bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 440px;
+  height: 440px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
+  overflow: hidden;
+  outline: 2px solid white;
+}
+.blob {
+  position: absolute;
+  z-index: 1;
+  top: 90%;
+  left: 90%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
+}
+.blob2 {
+  position: absolute;
+  z-index: 1;
+  top: 90%;
+  left: 90%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background-color: #0400ff;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
+}
+@media screen and (max-width: 768px) {
+   .navBtn {
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .card {
+    width: 90vw;
+    height: 90vw;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .bg {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
+
+  .card img {
+    width: 85%;
+    height: 85%;
+  }
+
+  .blob,
+  .blob2 {
+    width: 100%;
+    height: 100%;
+  }
+}
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
 }
