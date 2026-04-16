@@ -9,13 +9,15 @@ import whatsapp from "../assets/whatsapp.png";
 function Explore() {
   const navigate = useNavigate();
   return (
-    <div className="explore">
-        <button className="navBtnZ" onClick={() => navigate("/")}>
+    <div className="exploreMainbg" style={{background:"black",margin:"0px"}}>
+       <button className="navBtnZ" onClick={() => navigate("/")}>
           ⬅ Back
         </button>
       <div className="expTitle">
         <img src={explore} alt="My Image" />
       </div>
+      <div className="explore">
+       
       <div className="card">
         <div className="bg">
           {" "}
@@ -42,15 +44,17 @@ function Explore() {
         </div>{" "}
         <div className="blob2"></div>
       </div>
-      <div className="footer">
-        <div className="footerCentreline"></div>
+      
+    </div>
+    <div className="footer" style={{color:'white'}}>
+        <div className="footerCentreline" style={{marginTop:"50px"}}></div>
         <h5>©2025 All Rights Reserved</h5>
         <div className="footer2">
           <p>😊 About Us</p>
           <p>📞 Contact</p>
           <p>🫂 Support</p>
         </div>
-        <div className="footer3">
+        <div className="footer3" style={{background:"black",margin:"0px"}} >
           <img src={whatsapp} alt="whatsapp" />
           <img src={linkedin} alt="linkedin" />
           <img src={insta} alt="instagram" />

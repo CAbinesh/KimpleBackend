@@ -95,7 +95,7 @@ function MainPage() {
         <div>
           <img className="headerLogo" src={kimple} alt="" />
         </div>
-        <div className="rightside">
+        <div className="rightside" style={{color:"white"}}>
           <div className="rightsidesvg">
             <img
               src={explore}
@@ -104,7 +104,7 @@ function MainPage() {
               className="icon"
               onClick={() => navigate("/explore")}
               
-            />
+            /> Explore
             <link rel="stylesheet" href="" />
           </div>
           <div className="rightsidesvg">
@@ -113,7 +113,7 @@ function MainPage() {
               title="settings"
               alt="settings"
               className="icon"
-            />
+            /> Settings
           </div>
           <div className="dropdown">
             <div className="dropdownArea">
@@ -228,13 +228,13 @@ function MainPage() {
       </div>
       {/* greetbox👆 */}
       <div className="Content" style={{ marginTop: "2rem" }}>
-        <h3> Recent Notes:</h3>
+        <h3 style={{color:"white"}}> Recent Notes:</h3>
         <div
           className="Content-container"
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
         >
           {latest.length === 0 ? (
-            <h4 style={{ color: "black" }}>
+            <h4 style={{ color: "white" }}>
               {" "}
               Nothing here yet — create your first note ✨
             </h4>

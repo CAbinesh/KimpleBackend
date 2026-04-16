@@ -139,7 +139,7 @@ function Profile() {
         <h3
           className="Logoutprofilefont"
           onClick={() => setShowLogoutConfirm(true)}
-          style={{ color: "red" }}
+          
         >
           <FaPowerOff /> Logout
         </h3>

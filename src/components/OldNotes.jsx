@@ -127,6 +127,7 @@ function OldNotes() {
           style={{
             fontWeight: "900",
             fontSize: "24px",
+            color:"white"
           }}
         >
         <img src={dashboard} alt="create" className="contenticon" />  Notes Dashboard
