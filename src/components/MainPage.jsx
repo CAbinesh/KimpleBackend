@@ -26,6 +26,7 @@ function MainPage() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dropdown, setDropDown] = useState(false);
+  const [count, setCount] = useState(0);
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchNotes = async () => {
@@ -56,7 +57,14 @@ function MainPage() {
     };
     fetchNotes();
   }, [navigate, API_URL]);
-
+  const fetchCount = async () => {
+    const res = await fetch(`${API_URL}/api/notes/bin/count`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setCount(data.count);
+  };
+  fetchCount();
   const latest = [...notes]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 3);
@@ -68,6 +76,7 @@ function MainPage() {
       });
       if (!res.ok) throw new Error("Move to bin failed");
       setNotes((prev) => prev.filter((note) => note.id !== id));
+      fetchCount();
     } catch (err) {
       console.log(err);
     }
@@ -95,7 +104,7 @@ function MainPage() {
         <div>
           <img className="headerLogo" src={kimple} alt="" />
         </div>
-        <div className="rightside" style={{color:"white"}}>
+        <div className="rightside" style={{ color: "white" }}>
           <div className="rightsidesvg">
             <img
               src={explore}
@@ -103,8 +112,8 @@ function MainPage() {
               alt="explore"
               className="icon"
               onClick={() => navigate("/explore")}
-              
-            /> Explore
+            />{" "}
+            Explore
             <link rel="stylesheet" href="" />
           </div>
           <div className="rightsidesvg">
@@ -113,7 +122,8 @@ function MainPage() {
               title="settings"
               alt="settings"
               className="icon"
-            /> Settings
+            />{" "}
+            Settings
           </div>
           <div className="dropdown">
             <div className="dropdownArea">
@@ -218,6 +228,7 @@ function MainPage() {
           }
         >
           <img src={deletes} alt="favorite" className="icon" /> TrashBin
+          {count > 0 && <span className="badge">{count}</span>}
         </NavLink>
       </div>
       {/* greet box */}
@@ -228,7 +239,7 @@ function MainPage() {
       </div>
       {/* greetbox👆 */}
       <div className="Content" style={{ marginTop: "2rem" }}>
-        <h3 style={{color:"white"}}> Recent Notes:</h3>
+        <h3 style={{ color: "white" }}> Recent Notes:</h3>
         <div
           className="Content-container"
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}

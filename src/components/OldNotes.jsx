@@ -16,6 +16,7 @@ import edit from "../assets/edit.png";
 
 function OldNotes() {
   const navigate = useNavigate();
+  const [count, setCount] = useState(0);
   const [notes, setNotes] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
@@ -37,7 +38,14 @@ function OldNotes() {
     };
     fetchNotes();
   }, [navigate, API_URL]);
-
+  const fetchCount = async () => {
+    const res = await fetch(`${API_URL}/api/notes/bin/count`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setCount(data.count);
+  };
+  fetchCount();
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`${API_URL}/api/notes/delete/${id}`, {
@@ -100,7 +108,6 @@ function OldNotes() {
           <img src={note} alt="create" className="icon" /> Notes
         </NavLink>
 
-        
         <NavLink
           style={{ cursor: "pointer" }}
           to="/trashBin"
@@ -109,6 +116,7 @@ function OldNotes() {
           }
         >
           <img src={deletes} alt="favorite" className="icon" /> TrashBin
+          {count > 0 && <span className="badge">{count}</span>}
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
@@ -118,7 +126,7 @@ function OldNotes() {
           }
         >
           {" "}
-          <img src={profile} alt="profile"  /> Profile
+          <img src={profile} alt="profile" /> Profile
         </NavLink>
       </div>
 
@@ -127,10 +135,11 @@ function OldNotes() {
           style={{
             fontWeight: "900",
             fontSize: "24px",
-            color:"white"
+            color: "white",
           }}
         >
-        <img src={dashboard} alt="create" className="contenticon" />  Notes Dashboard
+          <img src={dashboard} alt="create" className="contenticon" /> Notes
+          Dashboard
         </h3>
         <div className="OldNotes-container">
           {notes.length === 0 ? (

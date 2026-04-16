@@ -61,6 +61,7 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 .profilefont {
+    position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -82,7 +83,25 @@ body {
   box-shadow: 0 5px 10px rgba(255, 255, 255, 0.3);
   color: #ff9b04;
 }
+.badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+    background: red;        /* circle color */
+  color: white;           /* text color */
 
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;     /* makes it circle */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: bold;
+}
 /* ICON */
 .profilefont img {
   width: 28px;

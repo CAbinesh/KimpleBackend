@@ -16,6 +16,7 @@ import deletes from "../assets/delete.png";
 
 function Profile() {
   const navigate = useNavigate();
+  const [count, setCount] = useState(0);
   const { user, setUser } = useContext(AuthContext);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
@@ -42,6 +43,15 @@ function Profile() {
 
     fetchUser();
   }, [navigate, API_URL, setUser]);
+
+  const fetchCount = async () => {
+    const res = await fetch(`${API_URL}/api/notes/bin/count`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setCount(data.count);
+  };
+  fetchCount();
 
   // ✅ Logout (fixed)
   const handleLogout = async () => {
@@ -122,6 +132,7 @@ function Profile() {
           }
         >
           <img src={deletes} alt="favorite" className="icon" /> TrashBin
+          {count > 0 && <span className="badge">{count}</span>}
         </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
@@ -134,12 +145,10 @@ function Profile() {
           <img src={profile} alt="profile" />
           Profile
         </NavLink>
-       
-       
+
         <h3
           className="Logoutprofilefont"
           onClick={() => setShowLogoutConfirm(true)}
-          
         >
           <FaPowerOff /> Logout
         </h3>

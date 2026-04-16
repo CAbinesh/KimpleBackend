@@ -17,7 +17,7 @@ import deletes from "../assets/delete.png";
 function Trashbin() {
   const [notes, setNotes] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
-
+  const [count, setCount] = useState(0);
   const fetchBin = async () => {
     const res = await fetch(`${API_URL}/api/notes/bin`, {
       credentials: "include",
@@ -26,6 +26,16 @@ function Trashbin() {
     setNotes(data);
   };
   fetchBin();
+
+  const fetchCount = async () => {
+    const res = await fetch(`${API_URL}/api/notes/bin/count`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setCount(data.count);
+  };
+  fetchCount();
+
   useEffect(() => {}, [API_URL]);
   const handleRestore = async (id) => {
     try {
@@ -99,14 +109,15 @@ function Trashbin() {
           <img src={recent} alt="recent" className="icon" /> Recent
         </NavLink>
         <NavLink
-                  style={{ cursor: "pointer" }}
-                  to="/trashBin"
-                  className={({ isActive }) =>
-                    isActive ? "profilefont active" : "profilefont"
-                  }
-                >
-                  <img src={deletes} alt="favorite" className="icon" /> TrashBin
-                </NavLink>
+          style={{ cursor: "pointer" }}
+          to="/trashBin"
+          className={({ isActive }) =>
+            isActive ? "profilefont active" : "profilefont"
+          }
+        >
+          <img src={deletes} alt="favorite" className="icon" /> TrashBin
+          {count > 0 && <span className="badge">{count}</span>}
+        </NavLink>
         <NavLink
           style={{ cursor: "pointer" }}
           to="/profile"

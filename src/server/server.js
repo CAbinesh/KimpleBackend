@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(
   cors({
     origin:
-     "https://kimplebackend-front.onrender.com",
-    // "http://localhost:5173",
+       "https://kimplebackend-front.onrender.com",
+      // "http://localhost:5173",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -236,6 +236,18 @@ app.put("/api/notes/delete/:id", authMiddleware, async (req, res) => {
     res.json({ message: "Moved to Bin 🗑️" });
   } catch (err) {
     res.status(500).json({ error: err.message, message: "Server error" });
+  }
+});
+// For Delete badge count
+app.get("/api/notes/bin/count", authMiddleware, async (req, res) => {
+  try {
+    const count = await Note.countDocuments({
+      userId: req.user.id,
+      deleted: true,
+    });
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ error: error.message, message: "Server error" });
   }
 });
 // Trash bin link
