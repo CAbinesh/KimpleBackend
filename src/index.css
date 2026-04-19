@@ -267,7 +267,7 @@ body {
     flex-direction: column; /* 🔥 icon top, text below */
     align-items: center;
     justify-content: center;
-
+margin-right: 5px;
     width: auto;
     letter-spacing: 0;
     gap: 12px;
