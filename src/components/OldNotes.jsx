@@ -71,13 +71,16 @@ function OldNotes() {
   return (
     <div className="oldcontbg">
       <div className="Header">
-        <img className="headerLogo" src={kimple} alt="" />
         <div className="rightside">
           <h2 className="profilefont2">All Notes</h2>
         </div>
       </div>
 
       <div className="sideBar">
+               <div className="headerLogodiv">
+                 <img className="headerLogo" src={kimple} alt="" />
+               </div>
+
         <NavLink
           style={{ cursor: "pointer" }}
           to="/"
@@ -172,17 +175,22 @@ function OldNotes() {
                     __html: DOMPurify.sanitize(note.content),
                   }}
                 />
-                <button className="cardButton" onClick={() => handleEdit(note)}>
-                  Edit <img src={edit} alt="favorite" className="icon" />
-                </button>
-                <button
-                  className="cardButton"
-                  style={{ color: "red" }}
-                  onClick={() => handleDelete(note.id)}
-                >
-                  Move to Bin{" "}
-                  <img src={deletes} alt="favorite" className="icon" />{" "}
-                </button>
+                <div className="cardButtonRow">
+                  <button
+                    className="cardButton"
+                    onClick={() => handleEdit(note)}
+                  >
+                    Edit <img src={edit} alt="favorite" className="icon" />
+                  </button>
+                  <button
+                    className="cardButton"
+                    style={{ color: "red" }}
+                    onClick={() => handleDelete(note.id)}
+                  >
+                    Move to Bin{" "}
+                    <img src={deletes} alt="favorite" className="icon" />{" "}
+                  </button>
+                </div>
               </div>
             ))
           )}

@@ -9,7 +9,7 @@ import back from "../assets/arrow-left.png";
 import deletes from "../assets/delete.png";
 import save from "../assets/diskette.png";
 import edit from "../assets/edit.png";
-
+import { toast } from "react-toastify";
 
 
 
@@ -37,7 +37,7 @@ function New() {
   );
 
   const handleSave = async () => {
-    if (!content.trim()) return alert("Note is empty!");
+    if (!content.trim()) return toast.warning("Note is empty!");
     setIsSaving(true);
     try {
       await fetch(`${API_URL}/api/notes`, {
@@ -46,10 +46,10 @@ function New() {
         body: JSON.stringify({ content }),
         credentials: "include",
       });
-      alert("Note saved!");
-      navigate("/");
+      toast.success("Note saved!");
+     
     } catch (err) {
-      alert(err, "Failed to save note.");
+      toast.error(err, "Failed to save note.");
     } finally {
       setIsSaving(false);
     }
@@ -64,9 +64,9 @@ function New() {
         body: JSON.stringify({ content }),
         credentials: "include",
       });
-      if (!silent) alert("Note updated!");
+      if (!silent) toast.success("Note updated!");
     } catch (err) {
-      if (!silent) alert(err, "Failed to update note.");
+      if (!silent) toast.error(err, "Failed to update note.");
     }
   };
 
@@ -77,9 +77,10 @@ function New() {
         method: "DELETE",
         credentials: "include",
       });
+        toast.success("Note deleted");
       navigate("/");
     } catch (err) {
-      alert(err, "Failed to delete note.");
+      toast.error(err, "Failed to delete note.");
     }
   };
 

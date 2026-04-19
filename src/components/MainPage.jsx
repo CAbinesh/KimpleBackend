@@ -101,29 +101,28 @@ function MainPage() {
   return (
     <div className="MainPgContainer1">
       <div className="Header">
-        <div>
-          <img className="headerLogo" src={kimple} alt="" />
-        </div>
         <div className="rightside" style={{ color: "white" }}>
           <div className="rightsidesvg">
-            <img
-              src={explore}
-              title="Explore"
-              alt="explore"
-              className="icon"
-              onClick={() => navigate("/explore")}
-            />{" "}
-            Explore
-            <link rel="stylesheet" href="" />
+            <button onClick={() => navigate("/explore")}>
+              <img
+                src={explore}
+                title="Explore"
+                alt="explore"
+                className="icon"
+              />{" "}
+              Explore
+            </button>
           </div>
           <div className="rightsidesvg">
-            <img
-              src={settings}
-              title="settings"
-              alt="settings"
-              className="icon"
-            />{" "}
-            Settings
+            <button>
+              <img
+                src={settings}
+                title="settings"
+                alt="settings"
+                className="icon"
+              />{" "}
+              Settings
+            </button>
           </div>
           <div className="dropdown">
             <div className="dropdownArea">
@@ -181,7 +180,11 @@ function MainPage() {
         </div>
       </div>
       <div className="sideBar">
-        <NavLink
+        <div className="headerLogodiv">
+          <img className="headerLogo" src={kimple} alt="" />
+        </div>
+       <div className="navLink">
+         <NavLink
           style={{ cursor: "pointer" }}
           to="/"
           className={({ isActive }) =>
@@ -230,6 +233,7 @@ function MainPage() {
           <img src={deletes} alt="favorite" className="icon" /> TrashBin
           {count > 0 && <span className="badge">{count}</span>}
         </NavLink>
+       </div>
       </div>
       {/* greet box */}
       <div className="greetBox">
@@ -260,17 +264,22 @@ function MainPage() {
                   }}
                 />
 
-                <button className="cardButton" onClick={() => handleEdit(note)}>
-                  Edit <img src={edit} alt="favorite" className="icon" />
-                </button>
-                <button
-                  className="cardButton"
-                  style={{ color: "red" }}
-                  onClick={() => handleDelete(note.id)}
-                >
-                  Move to Bin{" "}
-                  <img src={deletes} alt="favorite" className="icon" />
-                </button>
+                <div className="cardButtonRow">
+                  <button
+                    className="cardButton"
+                    onClick={() => handleEdit(note)}
+                  >
+                    Edit <img src={edit} alt="favorite" className="icon" />
+                  </button>
+                  <button
+                    className="cardButton"
+                    style={{ color: "red" }}
+                    onClick={() => handleDelete(note.id)}
+                  >
+                    Move to Bin{" "}
+                    <img src={deletes} alt="favorite" className="icon" />
+                  </button>
+                </div>
               </div>
             ))
           )}

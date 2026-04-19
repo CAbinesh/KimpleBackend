@@ -74,17 +74,15 @@ function Profile() {
     <div className="oldcontbg" style={{ minHeight: "100vh" }}>
       {/* HEADER */}
       <div className="Header">
-        <img
-          className="logo"
-          src={kimple}
-          alt="logo"
-          style={{ height: "100px", width: "100px", marginLeft: "10px" }}
-        />
+        
         <h2 className="profilefont2">Profile</h2>
       </div>
 
       {/* SIDEBAR */}
       <div className="sideBar">
+        <div className="headerLogodiv">
+          <img className="headerLogo" src={kimple} alt="" />
+        </div>
         <NavLink
           style={{ cursor: "pointer" }}
           to="/"

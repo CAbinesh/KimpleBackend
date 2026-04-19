@@ -8,6 +8,8 @@ import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 import Trashbin from "./components/Trashbin"
 import Explore from "./components/Explore";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const AuthContext = createContext();
 
 function App() {
@@ -71,6 +73,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
+          <ToastContainer position="top-right" autoClose={2000} />
       <Routes>
         <Route
           path="/"
