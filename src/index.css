@@ -160,6 +160,7 @@ body {
 }
 
 .greetBox {
+  position: relative; /* important */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,7 +168,7 @@ body {
   text-align: center;
 
   width: 95%;
-  margin: 20px auto; /* 🔥 this centers the box */
+  margin: 20px auto;
 
   background-image: url("/greetbox.jpg");
   background-position: center;
@@ -178,32 +179,51 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 
   padding: 10px;
+  overflow: hidden; /* keeps overlay inside rounded corners */
+}
+
+/* 🔥 overlay layer */
+.greetBox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 20, 0.01);
+  backdrop-filter: blur(2px);
+
+  z-index: 0;
+}
+
+/* keep content above overlay */
+.greetBox > * {
+  position: relative;
+  z-index: 1;
 }
 .greetBox h1 {
-  font-size: 50px;
+  font-size: 60px;
   letter-spacing: 10px;
   margin: 0;
    font-family: "Caveat", cursive;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
-  color: white;
+  color: black;
+  
 }
 .greetBox h3 {
   margin: 5px 0 0 0;
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   font-size: 16px;
   letter-spacing: 3px;
   font-weight: 900;
-  color: red;
+  color: black;
 }
 
 .centreline {
   box-shadow:
-    0px 0px 20px 5px rgba(255, 242, 0, 0.8),
+    0px 0px 20px 5px rgba(255, 242, 0, 0.5),
     0px 0px 40px 10px rgba(255, 136, 0, 0.3);
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
