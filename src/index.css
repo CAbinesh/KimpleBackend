@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bilbo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
@@ -169,9 +169,7 @@ body {
 
   width: 95%;
   margin: 20px auto; /* 🔥 this centers the box */
-  font-family: "Bilbo", cursive;
-  font-weight: 400;
-  font-style: normal;
+
   background-image: url("/greetbox.jpg");
   background-position: center;
   background-size: cover;
@@ -186,7 +184,10 @@ body {
   font-size: 50px;
   letter-spacing: 10px;
   margin: 0;
-  font-weight: 900;
+   font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   color: white;
 }
 .greetBox h3 {
