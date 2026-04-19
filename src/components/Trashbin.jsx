@@ -112,7 +112,7 @@ function Trashbin() {
 
         <div className="OldNotes-container">
           {notes.length === 0 ? (
-            <h4 style={{ textAlign: "center", marginTop: "60px" }}>
+            <h4 style={{ textAlign: "center", marginTop: "60px",color:"white" }}>
               Your trash is empty 🗑
             </h4>
           ) : (
