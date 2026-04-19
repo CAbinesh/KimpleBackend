@@ -41,9 +41,7 @@ function Trashbin() {
         credentials: "include",
       });
 
-      setNotes((prev) =>
-        prev.filter((note) => (note.id || note._id) !== id)
-      );
+      setNotes((prev) => prev.filter((note) => (note.id || note._id) !== id));
     } catch (err) {
       console.log(err);
     }
@@ -56,9 +54,7 @@ function Trashbin() {
         credentials: "include",
       });
 
-      setNotes((prev) =>
-        prev.filter((note) => (note.id || note._id) !== id)
-      );
+      setNotes((prev) => prev.filter((note) => (note.id || note._id) !== id));
     } catch (err) {
       console.log(err);
     }
@@ -76,33 +72,32 @@ function Trashbin() {
         <div className="headerLogodiv">
           <img className="headerLogo" src={kimple} alt="" />
         </div>
+        <div className="navLink">
+          <NavLink to="/" className="profilefont">
+            <img src={home} className="icon" /> Home
+          </NavLink>
 
-        <NavLink to="/" className="profilefont">
-          <img src={home} className="icon" /> Home
-        </NavLink>
+          <NavLink to="/new" className="profilefont">
+            <img src={create} className="icon" /> Create
+          </NavLink>
 
-        <NavLink to="/new" className="profilefont">
-          <img src={create} className="icon" /> Create
-        </NavLink>
+          <NavLink to="/oldnotes" className="profilefont">
+            <img src={note} className="icon" /> Notes
+          </NavLink>
 
-        <NavLink to="/oldnotes" className="profilefont">
-          <img src={note} className="icon" /> Notes
-        </NavLink>
+          <NavLink to="/recent" className="profilefont">
+            <img src={recent} className="icon" /> Recent
+          </NavLink>
 
-        <NavLink to="/recent" className="profilefont">
-          <img src={recent} className="icon" /> Recent
-        </NavLink>
+          <NavLink to="/trashBin" className="profilefont">
+            <img src={deletes} className="icon" /> TrashBin
+            {notes.length > 0 && <span className="badge">{notes.length}</span>}
+          </NavLink>
 
-        <NavLink to="/trashBin" className="profilefont">
-          <img src={deletes} className="icon" /> TrashBin
-          {notes.length > 0 && (
-            <span className="badge">{notes.length}</span>
-          )}
-        </NavLink>
-
-        <NavLink to="/profile" className="profilefont">
-          <img src={profile} /> Profile
-        </NavLink>
+          <NavLink to="/profile" className="profilefont">
+            <img src={profile} /> Profile
+          </NavLink>
+        </div>
       </div>
 
       <div className="Content">
@@ -112,7 +107,9 @@ function Trashbin() {
 
         <div className="OldNotes-container">
           {notes.length === 0 ? (
-            <h4 style={{ textAlign: "center", marginTop: "60px",color:"white" }}>
+            <h4
+              style={{ textAlign: "center", marginTop: "60px", color: "white" }}
+            >
               Your trash is empty 🗑
             </h4>
           ) : (
@@ -128,19 +125,15 @@ function Trashbin() {
                 <div className="cardButtonRow">
                   <button
                     className="cardButton"
-                    onClick={() =>
-                      handleRestore(note.id || note._id)
-                    }
+                    onClick={() => handleRestore(note.id || note._id)}
                   >
                     <img src={restore} className="icon" /> Restore
                   </button>
 
                   <button
                     className="cardButton danger"
-                    style={{color:"red"}}
-                    onClick={() =>
-                      handleDeletePermanent(note.id || note._id)
-                    }
+                    style={{ color: "red" }}
+                    onClick={() => handleDeletePermanent(note.id || note._id)}
                   >
                     <img src={paper} className="icon" /> Delete Permanent
                   </button>

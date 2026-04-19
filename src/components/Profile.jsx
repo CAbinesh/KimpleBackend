@@ -74,7 +74,6 @@ function Profile() {
     <div className="oldcontbg" style={{ minHeight: "100vh" }}>
       {/* HEADER */}
       <div className="Header">
-        
         <h2 className="profilefont2">Profile</h2>
       </div>
 
@@ -83,73 +82,75 @@ function Profile() {
         <div className="headerLogodiv">
           <img className="headerLogo" src={kimple} alt="" />
         </div>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          {" "}
-          <img src={home} alt="home" className="icon" /> Home
-        </NavLink>
+        <div className="navLink">
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            {" "}
+            <img src={home} alt="home" className="icon" /> Home
+          </NavLink>
 
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/new"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={create} alt="create" className="icon" /> Create
-        </NavLink>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/oldnotes"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={note} alt="create" className="icon" /> Notes
-        </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/new"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <img src={create} alt="create" className="icon" /> Create
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/oldnotes"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <img src={note} alt="create" className="icon" /> Notes
+          </NavLink>
 
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/recent"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={recent} alt="recent" className="icon" /> Recent
-        </NavLink>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/trashBin"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={deletes} alt="favorite" className="icon" /> TrashBin
-          {count > 0 && <span className="badge">{count}</span>}
-        </NavLink>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/profile"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          {" "}
-          <img src={profile} alt="profile" />
-          Profile
-        </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/recent"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <img src={recent} alt="recent" className="icon" /> Recent
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/trashBin"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <img src={deletes} alt="favorite" className="icon" /> TrashBin
+            {count > 0 && <span className="badge">{count}</span>}
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            {" "}
+            <img src={profile} alt="profile" />
+            Profile
+          </NavLink>
 
-        <h3
-          className="Logoutprofilefont"
-          onClick={() => setShowLogoutConfirm(true)}
-        >
-          <FaPowerOff /> Logout
-        </h3>
+          <h3
+            className="Logoutprofilefont"
+            onClick={() => setShowLogoutConfirm(true)}
+          >
+            <FaPowerOff /> Logout
+          </h3>
+        </div>
 
         {/* ✅ MODAL */}
         {showLogoutConfirm && (
