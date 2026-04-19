@@ -269,7 +269,7 @@ body {
 
     width: auto;
     letter-spacing: 0;
-    gap: 6px;
+    gap: 12px;
     margin: 0; /* ❌ remove auto */
     padding: 6px;
   }
