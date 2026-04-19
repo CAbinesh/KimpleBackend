@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bilbo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 body {
@@ -187,7 +187,6 @@ body {
   letter-spacing: 10px;
   margin: 0;
   font-weight: 900;
-  
 }
 .greetBox h3 {
   margin: 5px 0 0 0;
@@ -197,11 +196,11 @@ body {
   font-size: 16px;
   letter-spacing: 3px;
   font-weight: 900;
- background: #FF0000;
-background: linear-gradient(to left, #FF0000 0%, #000000 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-
+  background: #ff0000;
+  background: linear-gradient(to left, #ff0000 0%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .centreline {
@@ -229,7 +228,7 @@ background: linear-gradient(to left, #FF0000 0%, #000000 100%);
     grid-template-areas: "sd" "hd" "gt" "mn" "ft";
   }
   .greetBox h1 {
-    font-size: 20px;
+    font-size: 30px;
   }
   .Logoutprofilefont {
     margin-top: 5px;
@@ -252,7 +251,7 @@ background: linear-gradient(to left, #FF0000 0%, #000000 100%);
 
     width: auto;
     letter-spacing: 0;
-    gap: 3px;
+    gap: 6px;
     margin: 0; /* ❌ remove auto */
     padding: 6px;
   }
@@ -546,8 +545,8 @@ button img {
   box-shadow:
     rgba(88, 88, 88, 0.25) 0px 2px 1px,
     rgba(79, 78, 78, 0.29) 0px 4px 2px,
-    rgba(104, 103, 103, 0.29) 0px 8px 4px
- }
+    rgba(104, 103, 103, 0.29) 0px 8px 4px;
+}
 .note-cardTitle {
   display: flex;
   flex-direction: column;
@@ -1042,7 +1041,6 @@ button img {
   height: 25px;
 }
 .footerCentreline {
-  
   width: 98%;
   box-shadow:
     0px 0px 20px 5px rgba(255, 242, 0, 0.8),
@@ -1254,7 +1252,6 @@ button img {
 }
 /* SCROOL BAR */
 /* Modern browsers — Chrome 121+, Edge 121+, Firefox, Safari 18.2+ */
-
 
 /* Legacy WebKit — older Chrome/Edge/Safari, radius, borders & shadows */
 .note-content::-webkit-scrollbar {
