@@ -133,7 +133,7 @@ function New() {
         </h2>
       </div>
 
-      <div className="greetbox">
+      <div className="greetBox">
         <button className="navBtn" onClick={() => navigate("/")}>
           <IoMdArrowRoundBack className="icon" />
         </button>
