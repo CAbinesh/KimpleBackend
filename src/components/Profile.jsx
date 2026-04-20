@@ -185,7 +185,8 @@ function Profile() {
       </div>
 
       {/* PROFILE BODY */}
-      <div className="profile-body">
+      <div className="Content">
+        <div className="profile-body">
         <div className="profile-body-2">
           <div className="profileForm">
             <div>
@@ -205,6 +206,7 @@ function Profile() {
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       {/* FOOTER */}
