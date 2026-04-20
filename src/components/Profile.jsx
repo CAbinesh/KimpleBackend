@@ -2,17 +2,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import home from "../assets/mansion.png";
-import note from "../assets/notes.png";
-import create from "../assets/magic-wand.png";
-import { FaPowerOff } from "react-icons/fa6";
-import profile from "../assets/verified.png";
-import recent from "../assets/history.png";
 import kimple from "../assets/kimple.png";
+import { FaPowerOff } from "react-icons/fa6";
+import { FaRegUserCircle } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
+import { PiCards } from "react-icons/pi";
+import { IoCreate } from "react-icons/io5";
+import { FaClockRotateLeft } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import deletes from "../assets/delete.png";
 
 function Profile() {
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ function Profile() {
             }
           >
             {" "}
-            <img src={home} alt="home" className="icon" /> Home
+            <IoHome className="icon" /> Home
           </NavLink>
 
           <NavLink
@@ -101,7 +101,7 @@ function Profile() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={create} alt="create" className="icon" /> Create
+            <IoCreate className="icon" /> Create
           </NavLink>
           <NavLink
             style={{ cursor: "pointer" }}
@@ -110,7 +110,7 @@ function Profile() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={note} alt="create" className="icon" /> Notes
+            <PiCards className="icon" /> Notes
           </NavLink>
 
           <NavLink
@@ -120,7 +120,7 @@ function Profile() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={recent} alt="recent" className="icon" /> Recent
+            <FaClockRotateLeft className="icon" /> Recent
           </NavLink>
           <NavLink
             style={{ cursor: "pointer" }}
@@ -129,7 +129,7 @@ function Profile() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={deletes} alt="favorite" className="icon" /> TrashBin
+            <FaRegTrashAlt className="icon" /> TrashBin
             {count > 0 && <span className="badge">{count}</span>}
           </NavLink>
           <NavLink
@@ -140,7 +140,7 @@ function Profile() {
             }
           >
             {" "}
-            <img src={profile} alt="profile" />
+            <FaRegUserCircle alt="profile" className="icon" />
             Profile
           </NavLink>
 

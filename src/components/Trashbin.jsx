@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import DOMPurify from "dompurify";
-import home from "../assets/mansion.png";
-import note from "../assets/notes.png";
-import create from "../assets/magic-wand.png";
-import recent from "../assets/history.png";
-import paper from "../assets/paper.png";
-import restore from "../assets/arrow.png";
-import profile from "../assets/verified.png";
+import { MdBrokenImage } from "react-icons/md";
+import { MdRestorePage } from "react-icons/md";
 import kimple from "../assets/kimple.png";
+import { GiSparkles } from "react-icons/gi";
+import { FaRegUserCircle } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
+import { PiCards } from "react-icons/pi";
+import { IoCreate } from "react-icons/io5";
+import { FaClockRotateLeft } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import deletes from "../assets/delete.png";
 
 function Trashbin() {
   const [notes, setNotes] = useState([]);
@@ -73,29 +74,53 @@ function Trashbin() {
           <img className="headerLogo" src={kimple} alt="" />
         </div>
         <div className="navLink">
-          <NavLink to="/" className="profilefont">
-            <img src={home} className="icon" /> Home
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            {" "}
+            <IoHome className="icon" /> Home
           </NavLink>
 
-          <NavLink to="/new" className="profilefont">
-            <img src={create} className="icon" /> Create
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/new"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <IoCreate className="icon" /> Create
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/oldnotes"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <PiCards className="icon" /> Notes
           </NavLink>
 
-          <NavLink to="/oldnotes" className="profilefont">
-            <img src={note} className="icon" /> Notes
-          </NavLink>
-
-          <NavLink to="/recent" className="profilefont">
-            <img src={recent} className="icon" /> Recent
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/recent"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaClockRotateLeft className="icon" /> Recent
           </NavLink>
 
           <NavLink to="/trashBin" className="profilefont">
-            <img src={deletes} className="icon" /> TrashBin
+            <FaRegTrashAlt className="icon" /> TrashBin
             {notes.length > 0 && <span className="badge">{notes.length}</span>}
           </NavLink>
 
           <NavLink to="/profile" className="profilefont">
-            <img src={profile} /> Profile
+            <FaRegUserCircle alt="profile" className="icon" /> Profile
           </NavLink>
         </div>
       </div>
@@ -108,9 +133,17 @@ function Trashbin() {
         <div className="OldNotes-container">
           {notes.length === 0 ? (
             <h4
-              style={{ textAlign: "center", marginTop: "60px", color: "white" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "60px",
+                color: "white",
+              }}
             >
-              Your trash is empty 🗑
+              <span>Your Trash Is Empty</span>
+              <GiSparkles style={{ fontSize: "25px",color:"yellow" }} />
             </h4>
           ) : (
             notes.map((note) => (
@@ -127,7 +160,7 @@ function Trashbin() {
                     className="cardButton"
                     onClick={() => handleRestore(note.id || note._id)}
                   >
-                    <img src={restore} className="icon" /> Restore
+                    <MdRestorePage className="icon" /> Restore
                   </button>
 
                   <button
@@ -135,7 +168,7 @@ function Trashbin() {
                     style={{ color: "red" }}
                     onClick={() => handleDeletePermanent(note.id || note._id)}
                   >
-                    <img src={paper} className="icon" /> Delete Permanent
+                    <MdBrokenImage className="icon" /> Delete Permanent
                   </button>
                 </div>
               </div>

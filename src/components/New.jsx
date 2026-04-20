@@ -1,33 +1,62 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import JoditEditor from "jodit-react";
 import kimple from "../assets/kimple.png";
+import { IoHome } from "react-icons/io5";
+import { PiCards } from "react-icons/pi";
+import { IoCreate } from "react-icons/io5";
+import { FaClockRotateLeft } from "react-icons/fa6";
+import { FaRegUserCircle } from "react-icons/fa";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import back from "../assets/arrow-left.png";
-import deletes from "../assets/delete.png";
-import save from "../assets/diskette.png";
-import edit from "../assets/edit.png";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegSave } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
-
-
 
 function New() {
   const [content, setContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [count, setCount] = useState(0);
+
   const editor = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const API_URL = import.meta.env.VITE_API_URL;
+
   const noteToEdit = location.state?.note || null;
 
-  // Load existing note content
+  // ✅ fetch trash count properly
+  const fetchCount = useCallback(async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/notes/bin/count`, {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setCount(data.count);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [API_URL]);
+
+  // ✅ run only once
+  useEffect(() => {
+    fetchCount();
+  }, [fetchCount]);
+
+  // Load existing note
   useEffect(() => {
     if (noteToEdit) setContent(noteToEdit.content);
   }, [noteToEdit]);
 
-  // Editor config
   const config = useMemo(
     () => ({
       readonly: false,
@@ -47,16 +76,17 @@ function New() {
         credentials: "include",
       });
       toast.success("Note saved!");
-     
     } catch (err) {
-      toast.error(err, "Failed to save note.");
+      console.log(err);
+      toast.error("Failed to save note.");
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleUpdate = async (silent = false) => {
-    if (!noteToEdit || !content.trim()) return;
+    if (!noteToEdit || !content.trim())
+      return toast.warning("No changes done!");
     try {
       await fetch(`${API_URL}/api/notes/${noteToEdit.id}`, {
         method: "PUT",
@@ -66,51 +96,48 @@ function New() {
       });
       if (!silent) toast.success("Note updated!");
     } catch (err) {
-      if (!silent) toast.error(err, "Failed to update note.");
+      console.log(err);
+      if (!silent) toast.error("Failed to update note.");
     }
   };
 
+  // ✅ FIXED DELETE
   const handleDelete = async () => {
     if (!noteToEdit) return;
+
     try {
-      await fetch(`${API_URL}/api/notes/${noteToEdit.id}`, {
-        method: "DELETE",
+      const res = await fetch(`${API_URL}/api/notes/delete/${noteToEdit.id}`, {
+        method: "PUT",
         credentials: "include",
       });
-        toast.success("Note deleted");
+
+      if (!res.ok) throw new Error("Move to bin failed");
+
+      toast.success("Moved to trash");
+
+      // 🔥 update count instantly
+      await fetchCount();
+
       navigate("/");
     } catch (err) {
-      toast.error(err, "Failed to delete note.");
+      console.log(err);
+      toast.error("Failed to delete note.");
     }
   };
 
   return (
     <div className="oldcontbg2">
-      <div
-        className="Header"
-        style={{
-          margin: "1rem auto",
-          justifyContent: "space-between",
-          display: "flex",
-        }}
-      >
-        <div style={{ display: "flex" }}>
-          <img
-            className="headerLogo"
-            src={kimple}
-            alt="My App Logo"
-            style={{  marginLeft: "10px" }}
-          />
-        </div>
+      <div className="Header">
         <h2 className="profilefont2">
           {noteToEdit ? "Edit Note" : "New Note"}
         </h2>
       </div>
 
-      <div className="NewHeader">
+      <div className="greetbox">
         <button className="navBtn" onClick={() => navigate("/")}>
-          <img src={back} alt="favorite" className="icon" />
+          <IoMdArrowRoundBack className="icon" />
         </button>
+
         {noteToEdit ? (
           <button
             title="Update"
@@ -118,7 +145,7 @@ function New() {
             onClick={() => handleUpdate(false)}
             disabled={isSaving}
           >
-            Update <img src={edit} alt="favorite" className="icon" />
+            Update <CiEdit className="icon" />
           </button>
         ) : (
           <button
@@ -127,27 +154,89 @@ function New() {
             onClick={handleSave}
             disabled={isSaving}
           >
-            Save <img src={save} alt="favorite" className="icon" />
+            Save <FaRegSave className="icon" />
           </button>
         )}
+
         {noteToEdit && (
           <button title="Delete" className="dltbtn" onClick={handleDelete}>
-            Delete <img src={deletes} alt="favorite" className="icon" />
+            Delete <FaRegTrashAlt className="icon" />
           </button>
         )}
       </div>
 
-      <div className="editor-container" style={{ marginTop: "1rem" }}>
+      <div className="sideBar">
+        <div className="headerLogodiv">
+          <img className="headerLogo" src={kimple} alt="" />
+        </div>
+
+        <div className="navLink">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <IoHome className="icon" /> Home
+          </NavLink>
+
+          <NavLink
+            to="/new"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <IoCreate className="icon" /> Create
+          </NavLink>
+
+          <NavLink
+            to="/oldnotes"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <PiCards className="icon" /> Notes
+          </NavLink>
+
+          <NavLink
+            to="/recent"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaClockRotateLeft className="icon" /> Recent
+          </NavLink>
+
+          <NavLink
+            to="/trashBin"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaRegTrashAlt className="icon" /> TrashBin
+            {count > 0 && <span className="badge">{count}</span>}
+          </NavLink>
+
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaRegUserCircle className="icon" /> Profile
+          </NavLink>
+        </div>
+      </div>
+
+      <div className="Content" style={{ marginTop: "1rem" }}>
         <JoditEditor
           ref={editor}
           value={content}
           config={config}
           tabIndex={1}
-          onBlur={(newContent) => setContent(newContent)}
+          onChange={(newContent) => setContent(newContent)}
         />
       </div>
-
-      {/* Render saved content with formatting (instead of raw <p> tags) */}
 
       <div className="footer">
         <div className="footerCentreline"></div>

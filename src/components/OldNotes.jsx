@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
-import home from "../assets/mansion.png";
-import note from "../assets/notes.png";
-import create from "../assets/magic-wand.png";
-import dashboard from "../assets/dashboard.png";
-import profile from "../assets/verified.png";
 import kimple from "../assets/kimple.png";
+import { IoHome } from "react-icons/io5";
+import { PiCards } from "react-icons/pi";
+import { IoCreate } from "react-icons/io5";
+import { FaClockRotateLeft } from "react-icons/fa6";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import deletes from "../assets/delete.png";
-import edit from "../assets/edit.png";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
+import dashboard from "../assets/dashboard.png";
+import { FaRegUserCircle } from "react-icons/fa";
 
 function OldNotes() {
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ function OldNotes() {
             }
           >
             {" "}
-            <img src={home} alt="home" className="icon" /> Home
+            <IoHome className="icon" /> Home
           </NavLink>
 
           <NavLink
@@ -100,7 +101,7 @@ function OldNotes() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={create} alt="create" className="icon" /> Create
+            <IoCreate className="icon" /> Create
           </NavLink>
           <NavLink
             style={{ cursor: "pointer" }}
@@ -109,9 +110,18 @@ function OldNotes() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={note} alt="create" className="icon" /> Notes
+            <PiCards className="icon" /> Notes
           </NavLink>
 
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/recent"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaClockRotateLeft className="icon" /> Recent
+          </NavLink>
           <NavLink
             style={{ cursor: "pointer" }}
             to="/trashBin"
@@ -119,7 +129,7 @@ function OldNotes() {
               isActive ? "profilefont active" : "profilefont"
             }
           >
-            <img src={deletes} alt="favorite" className="icon" /> TrashBin
+            <FaRegTrashAlt className="icon" /> TrashBin
             {count > 0 && <span className="badge">{count}</span>}
           </NavLink>
           <NavLink
@@ -130,7 +140,7 @@ function OldNotes() {
             }
           >
             {" "}
-            <img src={profile} alt="profile" /> Profile
+            <FaRegUserCircle alt="profile" className="icon" /> Profile
           </NavLink>
         </div>
       </div>
@@ -182,7 +192,8 @@ function OldNotes() {
                     className="cardButton"
                     onClick={() => handleEdit(note)}
                   >
-                    Edit <img src={edit} alt="favorite" className="icon" />
+                    Edit{" "}
+                    <CiEdit className="icon" alt="favorite" className="icon" />
                   </button>
                   <button
                     className="cardButton"
@@ -190,7 +201,7 @@ function OldNotes() {
                     onClick={() => handleDelete(note.id)}
                   >
                     Move to Bin{" "}
-                    <img src={deletes} alt="favorite" className="icon" />{" "}
+                    <FaRegTrashAlt alt="favorite" className="icon" />{" "}
                   </button>
                 </div>
               </div>

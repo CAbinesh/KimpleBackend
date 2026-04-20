@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../App";
 import DOMPurify from "dompurify";
-
-import settings from "../assets/settings.png";
-import explore from "../assets/confetti.png";
+import { GiGears } from "react-icons/gi";
+import { MdOutlineExplore } from "react-icons/md";
 import kimple from "../assets/kimple.png";
-import home from "../assets/mansion.png";
-import note from "../assets/notes.png";
-import create from "../assets/magic-wand.png";
-import recent from "../assets/history.png";
+import { IoHome } from "react-icons/io5";
+import { PiCards } from "react-icons/pi";
+import { IoCreate } from "react-icons/io5";
+import { FaClockRotateLeft } from "react-icons/fa6";
 import insta from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import deletes from "../assets/delete.png";
-import edit from "../assets/edit.png";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
 
 function MainPage() {
   const navigate = useNavigate();
@@ -104,8 +103,7 @@ function MainPage() {
         <div className="rightside" style={{ color: "white" }}>
           <div className="rightsidesvg">
             <button onClick={() => navigate("/explore")}>
-              <img
-                src={explore}
+              <MdOutlineExplore
                 title="Explore"
                 alt="explore"
                 className="icon"
@@ -115,12 +113,7 @@ function MainPage() {
           </div>
           <div className="rightsidesvg">
             <button>
-              <img
-                src={settings}
-                title="settings"
-                alt="settings"
-                className="icon"
-              />{" "}
+              <GiGears title="settings" alt="settings" className="icon" />{" "}
               Settings
             </button>
           </div>
@@ -183,61 +176,65 @@ function MainPage() {
         <div className="headerLogodiv">
           <img className="headerLogo" src={kimple} alt="" />
         </div>
-       <div className="navLink">
-         <NavLink
-          style={{ cursor: "pointer" }}
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          {" "}
-          <img src={home} alt="home" className="icon" /> Home
-        </NavLink>
+        <div className="navLink">
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            {" "}
+            <IoHome className="icon" /> Home
+          </NavLink>
 
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/new"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={create} alt="create" className="icon" /> Create
-        </NavLink>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/oldnotes"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={note} alt="create" className="icon" /> Notes
-        </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/new"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <IoCreate className="icon" /> Create
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/oldnotes"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <PiCards className="icon" /> Notes
+          </NavLink>
 
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/recent"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={recent} alt="recent" className="icon" /> Recent
-        </NavLink>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          to="/trashBin"
-          className={({ isActive }) =>
-            isActive ? "profilefont active" : "profilefont"
-          }
-        >
-          <img src={deletes} alt="favorite" className="icon" /> TrashBin
-          {count > 0 && <span className="badge">{count}</span>}
-        </NavLink>
-       </div>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/recent"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaClockRotateLeft className="icon" /> Recent
+          </NavLink>
+          <NavLink
+            style={{ cursor: "pointer" }}
+            to="/trashBin"
+            className={({ isActive }) =>
+              isActive ? "profilefont active" : "profilefont"
+            }
+          >
+            <FaRegTrashAlt className="icon" /> TrashBin
+            {count > 0 && <span className="badge">{count}</span>}
+          </NavLink>
+        </div>
       </div>
       {/* greet box */}
       <div className="greetBox">
-        <h1>Welcome, {user ? user.fullName : "user"} !</h1>
+        <h1>
+          <span className="welcome-text">Welcome, </span>
+          <span className="user-name">{user ? user.fullName : "user"}</span>
+          <span className="exclamation"> !</span>
+        </h1>
         <div className="centreline"></div>
         <h3>Capture your thoughts efficiently</h3>
       </div>
@@ -267,17 +264,17 @@ function MainPage() {
                 <div className="cardButtonRow">
                   <button
                     className="cardButton"
+                    style={{ color: "white" }}
                     onClick={() => handleEdit(note)}
                   >
-                    Edit <img src={edit} alt="favorite" className="icon" />
+                    <CiEdit className="icon" /> Edit
                   </button>
                   <button
                     className="cardButton"
                     style={{ color: "red" }}
                     onClick={() => handleDelete(note.id)}
                   >
-                    Move to Bin{" "}
-                    <img src={deletes} alt="favorite" className="icon" />
+                    <FaRegTrashAlt className="icon" /> Move to Bin
                   </button>
                 </div>
               </div>
