@@ -296,10 +296,10 @@ body {
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar { order: 1; }
-  .header  { order: 2; }
-  .greet   { order: 3; }
-  .main    { order: 4; flex: 1; } /* grows */
+  .sideBar { order: 1; }
+  .Header  { order: 2; }
+  .greetBox   { order: 3; }
+  .Content    { order: 4; flex: 1; } /* grows */
   .footer  { order: 5; }
   .greetBox h1 {
     font-size: 30px;
@@ -388,6 +388,11 @@ body {
    flex-direction: column;
    min-height: 100vh;
   }
+  .sideBar { order: 1; }
+  .Header  { order: 2; }
+  .greetBox   { order: 3; }
+  .Content    { order: 4; flex: 1; } /* grows */
+  .footer  { order: 5; }
 }
 
 /* CSS */
