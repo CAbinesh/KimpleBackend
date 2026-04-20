@@ -371,14 +371,12 @@ body {
 }
 @media screen and (max-width: 768px) {
   .oldcontbg {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "hd" "sd" "mn" "ft";
+   display: flex;
+   flex-direction: column;
   }
   .oldcontbg2{
-     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "hd" "sd" "gt" "mn" "ft";
+     display: flex;
+   flex-direction: column;
   }
 }
 

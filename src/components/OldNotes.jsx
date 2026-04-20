@@ -164,6 +164,7 @@ function OldNotes() {
                 marginTop: "60px",
                 fontWeight: "500",
                 marginBottom: "8px",
+                color:"white"
               }}
             >
               No Data found ＞︿＜
