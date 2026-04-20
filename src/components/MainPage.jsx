@@ -240,13 +240,13 @@ function MainPage() {
       </div>
       {/* greetbox👆 */}
       <div className="Content" style={{ marginTop: "2rem" }}>
-        <h3 style={{ color: "white" }}> Recent Notes:</h3>
+        <h3 style={{ color: "white",margin:"5px" }}> Recent Notes:</h3>
         <div
           className="Content-container"
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
         >
           {latest.length === 0 ? (
-            <h4 style={{ color: "white" }}>
+            <h4 style={{ color: "white",marginLeft:"5px" }}>
               {" "}
               Nothing here yet — create your first note ✨
             </h4>
