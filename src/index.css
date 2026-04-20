@@ -298,9 +298,8 @@ body {
   }
   .sideBar { order: 1; }
   .Header  { order: 2; }
-  .greetBox   { order: 3; }
-  .Content    { order: 4; flex: 1; } /* grows */
-  .footer  { order: 5; }
+  .Content    { order: 3; flex: 1; } /* grows */
+  .footer  { order: 4; }
   .greetBox h1 {
     font-size: 30px;
   }
