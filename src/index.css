@@ -294,7 +294,13 @@ body {
   .MainPgContainer1 {
      display: flex;
     flex-direction: column;
+    min-height: 100vh;
   }
+  .sidebar { order: 1; }
+  .header  { order: 2; }
+  .greet   { order: 3; }
+  .main    { order: 4; flex: 1; } /* grows */
+  .footer  { order: 5; }
   .greetBox h1 {
     font-size: 30px;
   }
@@ -372,11 +378,15 @@ body {
 @media screen and (max-width: 768px) {
   .oldcontbg {
    display: flex;
-   flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
   }
+  
+  
   .oldcontbg2{
      display: flex;
    flex-direction: column;
+   min-height: 100vh;
   }
 }
 
