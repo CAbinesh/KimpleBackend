@@ -292,9 +292,8 @@ body {
 }
 @media screen and (max-width: 768px) {
   .MainPgContainer1 {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "sd" "hd" "gt" "mn" "ft";
+     display: flex;
+    flex-direction: column;
   }
   .greetBox h1 {
     font-size: 30px;
