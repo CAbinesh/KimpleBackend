@@ -132,39 +132,7 @@ function New() {
           {noteToEdit ? "Edit Note" : "New Note"}
         </h2>
       </div>
-
-      <div className="Content">
-        <button className="navBtn" onClick={() => navigate("/")}>
-          <IoMdArrowRoundBack className="icon" />
-        </button>
-
-        {noteToEdit ? (
-          <button
-            title="Update"
-            className="savebtn"
-            onClick={() => handleUpdate(false)}
-            disabled={isSaving}
-          >
-            Update <CiEdit className="icon" />
-          </button>
-        ) : (
-          <button
-            title="Save"
-            className="savebtn"
-            onClick={handleSave}
-            disabled={isSaving}
-          >
-            Save <FaRegSave className="icon" />
-          </button>
-        )}
-
-        {noteToEdit && (
-          <button title="Delete" className="dltbtn" onClick={handleDelete}>
-            Delete <FaRegTrashAlt className="icon" />
-          </button>
-        )}
-      </div>
-
+      
       <div className="sideBar">
         <div className="headerLogodiv">
           <img className="headerLogo" src={kimple} alt="" />
@@ -229,6 +197,35 @@ function New() {
       </div>
 
       <div className="Content" style={{ marginTop: "1rem" }}>
+        <button className="navBtn" onClick={() => navigate("/")}>
+          <IoMdArrowRoundBack className="icon" />
+        </button>
+
+        {noteToEdit ? (
+          <button
+            title="Update"
+            className="savebtn"
+            onClick={() => handleUpdate(false)}
+            disabled={isSaving}
+          >
+            Update <CiEdit className="icon" />
+          </button>
+        ) : (
+          <button
+            title="Save"
+            className="savebtn"
+            onClick={handleSave}
+            disabled={isSaving}
+          >
+            Save <FaRegSave className="icon" />
+          </button>
+        )}
+
+        {noteToEdit && (
+          <button title="Delete" className="dltbtn" onClick={handleDelete}>
+            Delete <FaRegTrashAlt className="icon" />
+          </button>
+        )}
         <JoditEditor
           ref={editor}
           value={content}
