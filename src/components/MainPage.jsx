@@ -240,7 +240,7 @@ function MainPage() {
       </div>
       {/* greetbox👆 */}
       <div className="Content" style={{ marginTop: "2rem" }}>
-        <h3 style={{ color: "white",margin:"12px" }}> Recent Notes:</h3>
+        <h3 style={{ color: "white",margin:"12px" }}> Recent Notes :</h3>
         <div
           className="Content-container"
           style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
