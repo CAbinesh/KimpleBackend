@@ -195,7 +195,7 @@ function OldNotes() {
                     onClick={() => handleEdit(note)}
                   >
                     Edit{" "}
-                    <CiEdit className="icon" alt="favorite" className="icon" />
+                    <CiEdit  alt="favorite" className="icon" />
                   </button>
                   <button
                     className="cardButton"

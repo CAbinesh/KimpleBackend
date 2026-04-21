@@ -187,26 +187,21 @@ function Profile() {
       {/* PROFILE BODY */}
       <div className="Content">
         <div className="profile-body">
-        <div className="profile-body-2">
-          <div className="profileForm">
-            <div>
-              <img
-                className="profilelogo2"
-                style={{ height: "100px", width: "100px" }}
-                alt=""
-              />
-            </div>
-            <div className="input-wrapper">
-              <label className="floating-label">Username</label>
-              <h2>{user ? user.fullName : "user"}</h2>
-            </div>
-            <div className="input-wrapper">
-              <label className="floating-label">Email</label>
-              <h2>{user ? user.email : "email"}</h2>
+          <div className="profile-body-2">
+            <div className="profileForm">
+              <div>
+                <img src="/user.png" alt="" style={{width:"120px",height:"120px"}} />
+              </div>
+              <div className="input-wrapper">
+                <label className="floating-label">Username</label>
+                <h2>{user ? user.fullName : "user"}</h2>
+
+                <label className="floating-label">Email</label>
+                <h2>{user ? user.email : "email"}</h2>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       {/* FOOTER */}

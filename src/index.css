@@ -37,13 +37,7 @@ body {
   background-position: center;
   background-size: cover;
 }
-.profilelogo2 {
-  width: 70px;
-  height: 70px;
-  background-image: url("/user.png");
-  background-position: center;
-  background-size: cover;
-}
+
 .sideBar {
   grid-area: sd;
   background-color: #181818;
@@ -659,7 +653,7 @@ body {
 @media screen and (max-width: 640px) {
   .note-card {
     width: 80%;
-    height: 400px;
+    height: 300px;
     font-size: 0.95rem;
     padding: 10px;
     margin: auto;
@@ -784,7 +778,7 @@ body {
 
   width: 100%;
   max-width: 420px; /* 🔥 better than fixed 30% */
-  margin-top: 20px;
+  
 
   display: flex;
   flex-direction: column;
@@ -869,7 +863,9 @@ body {
   left: 40px;
   padding: 10px;
 }
-
+.profile-body label{
+  color: white;
+}
 .profile-body {
   display: flex;
   justify-content: center;
@@ -881,25 +877,21 @@ body {
   max-width: 400px;
 }
 .profileForm {
-  background: #ffffff;
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(208, 205, 205, 0.2);
+  box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.5);
   padding: 30px 25px;
   border-radius: 16px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.68);
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 20px;
 }
-.profilelogo {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #eee;
 
-  border: 3px solid #ddd;
-}
 .input-wrapper {
   width: 100%;
   display: flex;
