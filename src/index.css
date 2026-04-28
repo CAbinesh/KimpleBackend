@@ -328,6 +328,7 @@ background: linear-gradient(to top, #43434375, #000000,#000000); /* W3C, IE 10+/
     padding: 6px;
   }
   .navLink {
+    font-size: 15px;
     display: flex;
     flex-direction: row;
     gap: 25px;
