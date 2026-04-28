@@ -1,31 +1,38 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+
 import MainPage from "./components/MainPage";
 import New from "./components/New";
 import OldNotes from "./components/OldNotes";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
-import Trashbin from "./components/Trashbin"
+import Trashbin from "./components/Trashbin";
 import Explore from "./components/Explore";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export const AuthContext = createContext();
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const location = useLocation(); // ✅ needed for scroll effect
+
+  // ✅ Fetch logged-in user
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await fetch(`${API_URL}/api/me`, {
           method: "GET",
-          credentials: "include", // ✅ send cookie
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
         });
+
         if (res.ok) {
           const data = await res.json();
           setUser(data);
@@ -39,10 +46,17 @@ function App() {
         setLoading(false);
       }
     };
+
     fetchUser();
   }, [API_URL]);
 
-  if (loading)
+  // ✅ Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
+  // ✅ Loading screen
+  if (loading) {
     return (
       <div
         style={{
@@ -70,33 +84,48 @@ function App() {
         </div>
       </div>
     );
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-          <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-right" autoClose={2000} />
+
       <Routes>
         <Route
           path="/"
           element={user ? <MainPage /> : <Navigate to="/auth" />}
         />
-        <Route path="/new" element={user ? <New /> : <Navigate to="/auth" />} />
+
+        <Route
+          path="/new"
+          element={user ? <New /> : <Navigate to="/auth" />}
+        />
+
         <Route
           path="/oldnotes"
           element={user ? <OldNotes /> : <Navigate to="/auth" />}
         />
+
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate to="/auth" />}
         />
+
         <Route
           path="/trashBin"
           element={user ? <Trashbin /> : <Navigate to="/auth" />}
         />
+
         <Route
           path="/explore"
           element={user ? <Explore /> : <Navigate to="/auth" />}
         />
-        <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
+
+        <Route
+          path="/auth"
+          element={user ? <Navigate to="/" /> : <Auth />}
+        />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </AuthContext.Provider>

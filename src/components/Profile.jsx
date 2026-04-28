@@ -143,13 +143,6 @@ function Profile() {
             <FaRegUserCircle alt="profile" className="icon" />
             Profile
           </NavLink>
-
-          <h3
-            className="Logoutprofilefont"
-            onClick={() => setShowLogoutConfirm(true)}
-          >
-            <FaPowerOff /> Logout
-          </h3>
         </div>
 
         {/* ✅ MODAL */}
@@ -190,7 +183,11 @@ function Profile() {
           <div className="profile-body-2">
             <div className="profileForm">
               <div>
-                <img src="/user.png" alt="" style={{width:"120px",height:"120px"}} />
+                <img
+                  src="/user.png"
+                  alt=""
+                  style={{ width: "120px", height: "120px" }}
+                />
               </div>
               <div className="input-wrapper">
                 <label className="floating-label">Username</label>
@@ -199,11 +196,17 @@ function Profile() {
                 <label className="floating-label">Email</label>
                 <h2>{user ? user.email : "email"}</h2>
               </div>
+              <h3
+                className="Logoutprofilefont"
+                onClick={() => setShowLogoutConfirm(true)}
+              >
+                <FaPowerOff /> Logout
+              </h3>
             </div>
           </div>
         </div>
       </div>
-
+      
       {/* FOOTER */}
       <div className="footer">
         <div className="footerCentreline"></div>

@@ -26,13 +26,14 @@ function New() {
   const [content, setContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [count, setCount] = useState(0);
-
+  const [lastSaved, setLastSaved] = useState("");
+  const [currentNote, setCurrentNote] = useState(null);
   const editor = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const noteToEdit = location.state?.note || null;
+  const noteToEdit = currentNote || location.state?.note || null;
 
   // ✅ fetch trash count properly
   const fetchCount = useCallback(async () => {
@@ -54,7 +55,7 @@ function New() {
 
   // Load existing note
   useEffect(() => {
-    if (noteToEdit) setContent(noteToEdit.content);
+    if (noteToEdit) {setContent(noteToEdit.content);setLastSaved(noteToEdit.content)};
   }, [noteToEdit]);
 
   const config = useMemo(
@@ -65,16 +66,24 @@ function New() {
     [],
   );
 
+  const isChanged = content !== lastSaved;
+
   const handleSave = async () => {
     if (!content.trim()) return toast.warning("Note is empty!");
+    if (!isChanged) return;
     setIsSaving(true);
     try {
-      await fetch(`${API_URL}/api/notes`, {
+      const res = await fetch(`${API_URL}/api/notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content }),
         credentials: "include",
       });
+      const data = await res.json();
+      setCurrentNote(data);
+      setLastSaved(content);
+
+      setLastSaved(content);
       toast.success("Note saved!");
     } catch (err) {
       console.log(err);
@@ -132,7 +141,7 @@ function New() {
           {noteToEdit ? "Edit Note" : "New Note"}
         </h2>
       </div>
-      
+
       <div className="sideBar">
         <div className="headerLogodiv">
           <img className="headerLogo" src={kimple} alt="" />
@@ -215,7 +224,7 @@ function New() {
             title="Save"
             className="savebtn"
             onClick={handleSave}
-            disabled={isSaving}
+            disabled={!isChanged || isSaving}
           >
             Save <FaRegSave className="icon" />
           </button>

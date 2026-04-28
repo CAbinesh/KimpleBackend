@@ -26,6 +26,7 @@ function MainPage() {
   const [loading, setLoading] = useState(true);
   const [dropdown, setDropDown] = useState(false);
   const [count, setCount] = useState(0);
+  
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchNotes = async () => {
